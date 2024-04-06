@@ -61,7 +61,7 @@ CREATE TABLE admin (
 
 -- Insérer un enregistrement dans la table 'admin'
 INSERT INTO admin (id, mess)
-VALUES (1, 'Vous avez eu 20 à votre PROJET WEB !');
+VALUES (1, 'Vous êtes dans la nouvelle bdd !');
 
 
 
