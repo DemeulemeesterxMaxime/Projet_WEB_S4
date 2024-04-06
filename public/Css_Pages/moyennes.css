@@ -1,0 +1,29 @@
+.titre-moyenne{
+    text-align: center;
+}
+.classement-table table{
+    color: var(--white);
+	border-collapse: collapse;
+	width: 100%;
+		
+}
+.classement-table thead{
+    background-color: #847494;
+}
+.classement-table tbody{
+    background-color: var(--orange_clair);
+    border: 2px solid var(--white);
+}
+
+.classement-table th, td{
+    text-align: center;
+    padding: 10px 20px 10px 20px;
+    border: 2px solid var(--white);
+}
+.nom-matiere{
+    width: 40em;
+}
+
+.classement-table tbody tr:nth-child(even) {
+	background-color: var(--orange_isen);
+}

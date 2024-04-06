@@ -1,0 +1,210 @@
+/* Styles pour le formulaire de changement d'informations */
+
+.login-box {
+    margin: 50px auto;
+    width: 350px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    position: relative;
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    text-align: center;
+}
+
+.user-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--violet_isen);
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 2px solid var(--violet_clair);
+    outline: none;
+    background: transparent;
+}
+
+.user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--violet_isen);
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.user-box input:focus ~ label,
+.user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: var(--orange_isen);
+    font-size: 12px;
+}
+
+.button-form input[type="submit"] {
+    background-color: var(--orange_isen);
+    border: none;
+    color: var(--white);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: background-color 0.5s ease-out;
+}
+
+.button-form input[type="submit"]:hover {
+    background-color: var(--violet_isen);
+    cursor: pointer;
+}
+
+.ct {
+    position: relative;
+    margin: auto;
+    padding: 19px;
+    bottom: 20px;
+    }
+    
+    .btn_item>a>i{
+      color: var(--violet_clair);
+      background-color: var(--violet_isen);
+    }
+    .ct span{
+      color: var(--violet_clair);
+      position: relative;
+      font-size: 16px;
+      line-height: 18px;
+      font-weight: 900;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+    
+    
+    .horizontal-slide:before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    border-radius: 46px;
+    background: var(--orange_isen);
+    width: 40px;
+    height: 45px;
+    -webkit-animation-name: bouton;
+            animation-name: bouton;
+    -webkit-animation-duration: 0.4s;
+            animation-duration: 0.4s;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    }
+    
+    .horizontal-slide:hover:before {
+    -webkit-animation-name: bouton-hover;
+            animation-name: bouton-hover;
+    -webkit-animation-duration: 0.4s;
+            animation-duration: 0.4s;
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    width: 46px;
+    left: auto;
+    right: 0;
+    background: rgba(0, 128, 0, 0.5);
+    }
+    
+    @-webkit-keyframes bouton {
+    0% {
+      width: 46px;
+      left: auto;
+      right: 0;
+    }
+    36% {
+      width: 100%;
+    }
+    50% {
+      width: 100%;
+    }
+    100% {
+      width: 46px;
+      left: 0;
+      right: auto;
+    }
+    }
+    
+    @keyframes bouton {
+    0% {
+      width: 46px;
+      left: auto;
+      right: 0;
+    }
+    36% {
+      width: 100%;
+    }
+    50% {
+      width: 100%;
+    }
+    100% {
+      width: 46px;
+      left: 0;
+      right: auto;
+    }
+    }
+    
+    @-webkit-keyframes bouton-hover {
+    0% {
+      width: 46px;
+      left: 0;
+      right: auto;
+      background: rgba(128, 128, 128, 0.5);
+    }
+    36% {
+      width: 100%;
+      background: rgba(128, 128, 128, 0.5);
+    }
+    50% {
+      width: 100%;
+    }
+    100% {
+      width: 46px;
+      left: auto;
+      right: 0;
+      background: var(--orange_isen);
+    }
+    }
+    
+    @keyframes bouton-hover {
+    0% {
+      width: 46px;
+      left: 0;
+      right: auto;
+      background: rgba(128, 128, 128, 0.5);
+    }
+    36% {
+      width: 100%;
+      background: rgba(128, 128, 128, 0.5);
+    }
+    50% {
+      width: 100%;
+    }
+    100% {
+      width: 46px;
+      left: auto;
+      right: 0;
+      background: var(--orange_isen);
+    }
+    }
+    

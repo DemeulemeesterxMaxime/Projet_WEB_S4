@@ -1,0 +1,84 @@
+/* Définition des couleurs */
+:root {
+  --orange_isen: #F06B42;
+  --white: #FFFFFF;
+  --violet_isen: #3F2A56;
+  --violet_clair: #847494;
+}
+
+/* Styles pour le body */
+body {
+  background-color: var(--white);
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styles pour le titre */
+h3 {
+  color: var(--violet_isen);
+  font-size: 36px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Styles pour les boutons */
+.Container_grid button {
+  background-color: var(--orange_isen);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.Container_grid button:hover {
+  background-color: var(--violet_clair);
+}
+
+.Container_grid button a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* Styles pour la grille */
+.Container_grid {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 20px;
+}
+.Container_grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  height: 93vh;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-container button {
+  background-color: var(--orange_isen);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-container button:hover {
+  background-color: var(--violet_isen);
+}

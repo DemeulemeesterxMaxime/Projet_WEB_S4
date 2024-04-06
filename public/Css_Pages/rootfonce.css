@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+--background-color: #121212;
+--text-color: #FFFFFF;
+--primary-color: #3F2A56;
+--secondary-color: #F06B42;
+--box-background-color: #2c2c2e;
+    --orange_isen:#F06B42;
+    --orange_clair:#F9A88C;
+    --white:#FFFFFF;
+    --violet_isen:#3F2A56;
+    --violet_clair:#847494;
+
+}
+
+body {
+font-family: Poppins;
+text-decoration: none;
+overflow-x: hidden;
+margin: 0;
+background-color: var(--background-color);
+color: var(--text-color);
+}
+
+.grid-acc {
+display: grid;
+grid-template-columns: 1fr 1.3fr;
+grid-template-rows: auto;
+grid-template-areas: "A B";
+margin-top: 100px;
+}
+
+.acc-titre {
+grid-area: A;
+width: 70%;
+margin-left: 30%;
+}
+
+.titre-flex h2 {
+color: var(--primary-color);
+font-weight: bold;
+}
+
+.acc-img {
+grid-area: B;
+width: 80%;
+border-radius: 20px;
+}
+
+.acc-img:first-child {
+margin-left: 40%;
+box-shadow: -10px -10px var(--secondary-color);
+}
+
+.acc-img:last-child {
+margin-left: -20%;
+margin-top: -100px;
+box-shadow: 10px 10px var(--secondary-color);
+}
+
+#lien-acc {
+text-decoration: none;
+padding: 20px;
+background-color: var(--secondary-color);
+color: var(--text-color);
+width: 50%;
+border-radius: 10px;
+}
+
+.titre-flex {
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+
+.img-flex {
+display: flex;
+flex-direction: column;
+}
+
+.img-flex:first-child {
+overflow: hidden;
+}
+
+/* responsive de l'acc */
+@media screen and (max-width: 600px) {
+.grid-acc {
+grid-template-columns: 1fr;
+grid-template-rows: 1fr 1fr;
+grid-template-areas: "A"
+"B";
+}
+.acc-img:first-child {
+margin-left: 40%;
+}
+.acc-img:last-child {
+margin-left: 10%;
+}
+.img-flex {
+margin-top: 30px;
+}
+}
+
+/* Les boxs */
+.box-acc {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr 1fr;
+
+grid-template-areas: "E E E"
+                     "A B C"
+                     "D D D";
+background-color: var(--box-background-color);
+justify-items: center;
+color: white;
+margin: 100px 0 100px 0;
+padding: 100px 0 100px 0;
+}
+
+#titre-box-acc {
+color: var(--primary-color);
+grid-area: E;
+font-size: 30px;
+text-decoration: underline;
+}
+
+.box1 {
+grid-area: A;
+display: flex;
+flex-direction: row;
+align-items: center;
+width: 70%;
+height: 100px;
+background-color: var(--primary-color);
+border-radius: 5px;
+justify-content: center;
+}
+
+/* css pour faire l'animation sous le div de bienvenue */
+.notification__progress {
+    position: fixed;
+    right: 5px;
+    bottom: 5px;
+    width: calc(100% - 10px);
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background-image: linear-gradient(to right, #f8d824, var(--secondary-color));
+    border-radius: inherit;
+    -webkit-animation: load 5s 0.25s linear forwards;
+            animation: load 5s 0.25s linear forwards;
+    }
+    
+    /* animation qui permettent de faire la barre qui dÃ©file */
+    @-webkit-keyframes fade-in {
+    5% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    }
+    90% {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+    @keyframes fade-in {
+    5% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    }
+    90% {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+    @-webkit-keyframes load {
+    to {
+    transform: scaleX(1);
+    }
+    }
+    @keyframes load {
+    to {
+    transform: scaleX(1);
+    }
+    }
+
+    .box-acc i {
+        margin-left: 10px;
+        }
+        .box-acc a {
+        color: white;
+        text-decoration: none;
+        }
+        .box2 {
+        grid-area: B;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 70%;
+        background-color: var(--primary-color);
+        justify-content: center;
+        border-radius: 5px;
+        height: 100px;
+        }
+        .box3 {
+        grid-area: C;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 70%;
+        background-color: var(--primary-color);
+        justify-content: center;
+        height: 100px;
+        border-radius: 5px;
+        }
+        .lien-box {
+        grid-area: D;
+        margin-top: 100px;
+        }
+        .lien-box a {
+        padding: 10px 20px 10px 20px;
+        background-color: var(--secondary-color);
+        border-radius: 20px;
+        color: white;
+        text-decoration: none;
+        }
+        
+        @media screen and (max-width: 600px) {
+        .box-acc {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: "E"
+        "A"
+        "B"
+        "C"
+        "D";
+        }
+        }
+        
+        /* graphique */
+        .graphique {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 100px 0 100px 0;
+        }
+        .graphique-box {
+        border: 3px solid var(--secondary-color);
+        border-radius: 10px;
+        box-shadow: 10px 10px var(--secondary-color);
+        }
+        .graphique-box img {
+        border-radius: 10px;
+        }
+        
+        /* Classement */
+        
+        .classement {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 100px 0 0 0;
+        background-color: var(--box-background-color);
+        padding-bottom: 70px;
+        padding-top: 100px;
+        }
+        
+        .h2-titre-acc {
+        color: var(--primary-color);
+        }
+        .classement-table table {
+        color: white;
+        border-collapse: collapse;
+        width: 100%;
+        }
+        .classement-table thead {
+        background-color: #847494;
+        }
+        .classement-table tbody {
+        background-color: var(--secondary-color);
+        border: 2px solid white;
+        }
+        
+        .classement-table th, td {
+        padding: 10px 20px 10px 20px;
+        border: 2px solid white;
+        }
+        
+        /* css pour afficher le cadre du welcome $user */
+        .notification {
+        position: fixed;
+        bottom: 50px;
+        right: 19px;
+        width: -webkit-max-content;
+        width: -moz-max-content;
+        width: max-content;
+        padding: 20px 15px;
+        border-radius: 4px;
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+        transform: translateY(30px);
+        opacity: 0;
+        visibility: hidden;
+        -webkit-animation: fade-in 6s linear forwards;
+                animation: fade-in 6s linear forwards;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+--background-color: #121212;
+--text-color: #FFFFFF;
+--primary-color: #3F2A56;
+--secondary-color: #F06B42;
+--box-background-color: #2c2c2e;
+}
+
+body {
+font-family: Poppins;
+text-decoration: none;
+overflow-x: hidden;
+margin: 0;
+background-color: var(--background-color);
+color: var(--text-color);
+}
+
+.grid-acc {
+display: grid;
+grid-template-columns: 1fr 1.3fr;
+grid-template-rows: auto;
+grid-template-areas: "A B";
+margin-top: 100px;
+}
+
+.acc-titre {
+grid-area: A;
+width: 70%;
+margin-left: 30%;
+}
+
+.titre-flex h2 {
+color: var(--primary-color);
+font-weight: bold;
+}
+
+.acc-img {
+grid-area: B;
+width: 80%;
+border-radius: 20px;
+}
+
+.acc-img:first-child {
+margin-left: 40%;
+box-shadow: -10px -10px var(--secondary-color);
+}
+
+.acc-img:last-child {
+margin-left: -20%;
+margin-top: -100px;
+box-shadow: 10px 10px var(--secondary-color);
+}
+
+#lien-acc {
+text-decoration: none;
+padding: 20px;
+background-color: var(--secondary-color);
+color: var(--text-color);
+width: 50%;
+border-radius: 10px;
+}
+
+.titre-flex {
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+
+.img-flex {
+display: flex;
+flex-direction: column;
+}
+
+.img-flex:first-child {
+overflow: hidden;
+}
+
+/* responsive de l'acc */
+@media screen and (max-width: 600px) {
+.grid-acc {
+grid-template-columns: 1fr;
+grid-template-rows: 1fr 1fr;
+grid-template-areas: "A"
+"B";
+}
+.acc-img:first-child {
+margin-left: 40%;
+}
+.acc-img:last-child {
+margin-left: 10%;
+}
+.img-flex {
+margin-top: 30px;
+}
+}
+
+/* Les boxs */
+.box-acc {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr 1fr;
+grid-template-areas: "E E E"
+                     "A B C"
+                     "D D D";
+background-color: var(--box-background-color);
+justify-items: center;
+color: white;
+margin: 100px 0 100px 0;
+padding: 100px 0 100px 0;
+}
+
+#titre-box-acc {
+color: var(--primary-color);
+grid-area: E;
+font-size: 30px;
+text-decoration: underline;
+}
+
+.box1 {
+grid-area: A;
+display: flex;
+flex-direction: row;
+align-items: center;
+width: 70%;
+height: 100px;
+background-color: var(--primary-color);
+border-radius: 5px;
+justify-content: center;
+}

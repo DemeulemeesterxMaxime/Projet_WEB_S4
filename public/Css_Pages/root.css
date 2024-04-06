@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700&display=swap');
+:root{
+    --orange_isen:#F06B42;
+    --orange_clair:#F9A88C;
+    --white:#FFFFFF;
+    --violet_isen:#3F2A56;
+    --violet_clair:#847494;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Poppins;
+}

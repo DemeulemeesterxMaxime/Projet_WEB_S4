@@ -1,0 +1,24 @@
+{
+  "name": "projet_web_s4",
+  "version": "1.0.0",
+  "description": "Projet_WEB_PHP_S2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DemeulemeesterxMaxime/Projet_WEB_S4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DemeulemeesterxMaxime/Projet_WEB_S4/issues"
+  },
+  "homepage": "https://github.com/DemeulemeesterxMaxime/Projet_WEB_S4#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysqli": "^3.1.4"
+  }
+}

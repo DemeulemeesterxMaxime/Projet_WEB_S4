@@ -1,0 +1,481 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Couleurs personnalisées */
+:root {
+    --orange_isen:#F06B42;
+    --white:#FFFFFF;
+    --violet_isen:#3F2A56;
+    --violet_clair:#847494;
+}
+
+/* Réinitialisation des styles par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Poppins;
+}
+
+/* Style du conteneur principal */
+body {
+    background-color: var(--violet_isen);
+    display: block;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-around;
+    min-height: 80vh;
+}
+#form {
+    width: 2000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+#form input {
+  width: 100%;
+}
+/* Style du formulaire */
+form {
+    background-color: var(--white);
+    border-radius: 10px;
+    max-width: 35vw;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+form:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Style des champs de formulaire */
+.form-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+/* Ajouter un curseur au survol du label */
+label[for='afficher_plus'] {
+    cursor: pointer;
+}
+
+#lab:hover {
+    text-decoration: underline;
+    color: blueviolet;
+}
+.form-input label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--violet_isen);
+}
+
+.form-input input[type="file"] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: 1px solid var(--violet_isen);
+    border-radius: 5px;
+}
+
+/* Style du bouton */
+.btn {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--orange_isen);
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--violet_clair);
+}
+
+/* Style pour l'animation de texte */
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.item2 input[type="text"],
+.item2 input[type="number"],
+.item2 input[type="date"],
+.item2 select {
+    width: 100%;
+}
+form, .btn {
+    text-align: center;
+    -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+}
+
+/* Ajout de l'animation clignotante en vert */
+@-webkit-keyframes clignoteVert {
+  0%, 100% {
+      background-color: var(--white);
+  }
+  50% {
+      background-color: rgb(67, 203, 67);
+  }
+}
+@keyframes clignoteVert {
+  0%, 100% {
+      background-color: var(--white);
+  }
+  50% {
+      background-color: rgb(67, 203, 67);
+  }
+}
+
+/* Appliquer l'animation clignotante si la classe .success est présente */
+form.success {
+  -webkit-animation-name: clignoteVert;
+          animation-name: clignoteVert;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: 3;
+          animation-iteration-count: 3;
+}
+
+#email:hover{
+    text-decoration: underline;
+}
+
+.btn-item{
+  position: -webkit-sticky;
+  position: sticky;
+  margin-bottom: 20px;
+  bottom: 20px;
+  margin-left: 10px;
+}
+.footitem {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cta {
+  position: relative;
+  margin: auto;
+  padding: 19px;
+}
+
+i{
+    color: var(--white);
+}
+.cta span{
+    color: var(--white);
+    position: relative;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+
+
+.horizontale-slide:before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  border-radius: 46px;
+  background: var(--orange_isen);
+  width: 46px;
+  height: 46px;
+  -webkit-animation-name: bouton;
+          animation-name: bouton;
+  -webkit-animation-duration: 0.4s;
+          animation-duration: 0.4s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.horizontale-slide:hover:before {
+  -webkit-animation-name: bouton-hover;
+          animation-name: bouton-hover;
+  -webkit-animation-duration: 0.4s;
+          animation-duration: 0.4s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  width: 46px;
+  left: auto;
+  right: 0;
+  background: rgba(0, 128, 0, 0.5);
+}
+
+@-webkit-keyframes bouton {
+  0% {
+    width: 46px;
+    left: auto;
+    right: 0;
+  }
+  36% {
+    width: 100%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 46px;
+    left: 0;
+    right: auto;
+  }
+}
+
+@keyframes bouton {
+  0% {
+    width: 46px;
+    left: auto;
+    right: 0;
+  }
+  36% {
+    width: 100%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 46px;
+    left: 0;
+    right: auto;
+  }
+}
+
+@-webkit-keyframes bouton-hover {
+  0% {
+    width: 46px;
+    left: 0;
+    right: auto;
+    background: rgba(128, 128, 128, 0.5);
+  }
+  36% {
+    width: 100%;
+    background: rgba(128, 128, 128, 0.5);
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 46px;
+    left: auto;
+    right: 0;
+    background: var(--orange_isen);
+  }
+}
+
+@keyframes bouton-hover {
+  0% {
+    width: 46px;
+    left: 0;
+    right: auto;
+    background: rgba(128, 128, 128, 0.5);
+  }
+  36% {
+    width: 100%;
+    background: rgba(128, 128, 128, 0.5);
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 46px;
+    left: auto;
+    right: 0;
+    background: var(--orange_isen);
+  }
+}
+
+.head{
+    color: var(--white);
+    margin-top: 15px;
+    text-align:center;
+}
+
+
+h1:before {
+    content: attr(data-text);
+    position: absolute;
+    overflow: hidden;
+    max-width: 20em;
+    white-space: nowrap;
+    color: var(--orange_isen);
+    -webkit-animation: loading 8s linear;
+            animation: loading 8s linear;
+}
+@-webkit-keyframes loading {
+    0% {
+        max-width: 0;
+    }
+}
+@keyframes loading {
+    0% {
+        max-width: 0;
+    }
+}
+
+/* select option */
+.hidden-checkbox {
+    position: fixed;
+    opacity: 0;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    z-index: 2;
+}
+
+.label-text {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.hidden-checkbox:checked + .label-text + #content {
+    display: block;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#afficher_plus:checked ~ #plus {
+    display: block;
+}
+
+#plus {
+    display: none;
+}
+
+.label-text { /*propriété bouton social media*/
+    display: inline-block;
+    width: 65px;
+    height: 65px;
+    background: #fff;
+    box-shadow: 0px 5px 15px -5px #aaa;
+    margin: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    z-index: 4;
+    color: #ff00dc59;
+    text-align: center;
+  }
+  
+  .label-text i {
+    position: relative;
+    z-index: 4;
+    top: 20px;
+    font-size: 26px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .label-text::before {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(rgb(69, 182, 252), rgb(131 58 180), #1f7ef2);
+    transform: rotate(45deg);
+    left: -110%;
+    top: 90%;
+  }
+  
+  .label-text:hover i {
+    color: #fff;
+    transform: scale(1.3);
+  }
+  
+  .label-text:hover::before {
+    -webkit-animation: socialButtons 0.7s 1;
+            animation: socialButtons 0.7s 1;
+    left: -10%;
+    top: -10%;
+  }
+  @-webkit-keyframes socialButtons {
+    0% {
+      left: -110%;
+      top: 90%;
+    }
+  
+    50% {
+      left: 10%;
+      top: -30%;
+    }
+  
+    100% {
+      top: -10%;
+      left: -10%;
+    }
+  }
+  
+  @keyframes socialButtons {
+    0% {
+      left: -110%;
+      top: 90%;
+    }
+  
+    50% {
+      left: 10%;
+      top: -30%;
+    }
+  
+    100% {
+      top: -10%;
+      left: -10%;
+    }
+  } 
+
+#afficher_plus:checked ~ #plus {
+    display: block;
+}
+
+#plus {
+    display: none;
+}

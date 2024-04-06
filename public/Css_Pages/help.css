@@ -1,0 +1,182 @@
+:root {
+  --orange_isen: #F06B42;
+  --orange_clair: #F9A88C;
+  --white: #FFFFFF;
+  --violet_isen: #3F2A56;
+  --violet_clair: #847494;
+}
+
+body {
+  background-color: var(--violet_isen);
+  color: var(--white);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.content{
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+/* CSS image */
+#screen{
+  height: auto;
+  margin-bottom: 20px;
+  border: 5px solid var(--orange_isen);
+  box-shadow: 0 0 10px var(--orange_clair);
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Personnalisation du lecteur vidéo */
+video {
+  border: 5px solid var(--orange_isen);
+  box-shadow: 0 0 10px var(--orange_clair);
+  margin-bottom: 40px;
+}
+
+.head{
+  color: var(--white);
+  margin-top: 15px;
+  text-align:center;
+}
+
+h2:before {
+  content: attr(data-text);
+  position: absolute;
+  overflow: hidden;
+  max-width: 20em;
+  white-space: nowrap;
+  color: var(--orange_isen);
+  -webkit-animation: loading 8s linear infinite;
+          animation: loading 8s linear infinite;
+}
+@-webkit-keyframes loading {
+  0% {
+      max-width: 0;
+  }
+}
+@keyframes loading {
+  0% {
+      max-width: 0;
+  }
+}
+
+btn-item{
+  position: -webkit-sticky;
+  position: sticky;
+  margin-bottom: 20px;
+  bottom: 10px;
+  margin-left: 10px;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cta {
+  position: relative;
+  margin: auto;
+  padding: 19px;
+  bottom: 20px;
+}
+
+i{
+    color: var(--white);
+}
+.cta span{
+    color: var(--white);
+    position: relative;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+
+
+.horizontale-slide:before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  border-radius: 46px;
+  background: var(--orange_isen);
+  width: 46px;
+  height: 46px;
+  -webkit-animation-name: bouton;
+          animation-name: bouton;
+  -webkit-animation-duration: 0.4s;
+          animation-duration: 0.4s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.horizontale-slide:hover:before {
+  -webkit-animation-name: bouton-hover;
+          animation-name: bouton-hover;
+  -webkit-animation-duration: 0.4s;
+          animation-duration: 0.4s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  width: 46px;
+  left: auto;
+  right: 0;
+  background: rgba(0, 128, 0, 0.5);
+}
+
+@-webkit-keyframes bouton {
+  0% {
+    width: 46px;
+    left: auto;
+    right: 0;
+  }
+  36% {
+    width: 100%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 46px;
+    left: 0;
+    right: auto;
+  }
+}
+
+@keyframes bouton {
+  0% {
+    width: 46px;
+    left: auto;
+    right: 0;
+  }
+  36% {
+    width: 100%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 46px;
+    left: 0;
+    right: auto;
+  }
+}
