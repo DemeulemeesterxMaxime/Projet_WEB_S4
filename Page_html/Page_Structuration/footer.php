@@ -124,8 +124,8 @@
             ?> <a href="../../index.php">Accueil</a> <?php
                                                     } else {
                                                       ?> <a href="index.php">Accueil</a> <?php
-                                                                                                }
-                                                                                                  ?>
+                                                                                        }
+                                                                                          ?>
           </li>
           <li>
             <?php
@@ -133,8 +133,8 @@
             ?> <a href="classement.php">Classement</a> <?php
                                                       } else {
                                                         ?> <a href="Page_html/Page_PHP/classement.php">Classement</a> <?php
-                                                                                                                            }
-                                                                                                                              ?>
+                                                                                                                    }
+                                                                                                                      ?>
           </li>
           <li>
             <?php
@@ -142,8 +142,8 @@
             ?> <a href="moyennes.php">Moyenne</a> <?php
                                                 } else {
                                                   ?> <a href="Page_html/Page_PHP/moyennes.php">Moyenne</a> <?php
-                                                                                                                  }
-                                                                                                                    ?>
+                                                                                                          }
+                                                                                                            ?>
           </li>
           <li>
             <?php
@@ -151,8 +151,8 @@
             ?><a href="mesnotes.php">Mes notes</a> <?php
                                                   } else {
                                                     ?><a href="Page_html/Page_PHP/mesnotes.php">Mes notes</a> <?php
-                                                                                                                    }
-                                                                                                                      ?>
+                                                                                                            }
+                                                                                                              ?>
           </li>
           <li>
             <?php //si on est pas co alors se co sinon afficher profils
@@ -161,16 +161,34 @@
             ?><a href="sign_in_up.php">Se Connecter</a><?php // 
                                                       } else {
                                                         ?><a href="Page_html/Page_PHP/sign_in_up.php">Se Connecter</a> <?php // ../../Page_html/Page_PHP/sign_in_up.php
-                                                                                                                                }
-                                                                                                                              } else {
-                                                                                                                                //si on est connecté est que l'on est dans l'index alors
-                                                                                                                                if (strpos($_SERVER['REQUEST_URI'], '/Page_html/Page_PHP/') == true) {
-                                                                                                                                  ?> <a href="compte.php">Profil</a> <?php  //changer l'url au dessus
-                                                                                                                                } else {
-                                                                                                                          ?> <a href="Page_html/Page_PHP/compte.php">Profil</a> <?php
-                                                                                                                                }
-                                                                                                                              }
-                                                                                                                  ?>
+                                                                                                                      }
+                                                                                                                    } else {
+                                                                                                                      //si on est connecté est que l'on est dans l'index alors
+                                                                                                                      if (strpos($_SERVER['REQUEST_URI'], '/Page_html/Page_PHP/') == true) {
+                                                                                                                        ?> <a href="graph.php">Graphiques</a> <?php  //changer l'url au dessus
+                                                                                                                                                                    } else {
+                                                                                                                                                                      ?> <a href="Page_html/Page_PHP/graph.php">Graphiques</a> <?php
+                                                                                                                                                                              }
+                                                                                                                                                                            }
+                                                                                                                                                                                ?>
+          </li>
+          <li>
+            <?php //si on est pas co alors se co sinon afficher profils
+            if (isset($_SESSION["id"]) == false) { //si on est pas connecté
+              if (strpos($_SERVER['REQUEST_URI'], '/Page_html/Page_PHP/') == true) {?>
+                <a href="sign_in_up.php">Se Connecter</a><?php // 
+              } else {?>
+                <a href="Page_html/Page_PHP/sign_in_up.php">Se Connecter</a> 
+              <?php // ../../Page_html/Page_PHP/sign_in_up.php
+                                                                                                                      }
+              } else {
+                //si on est connecté est que l'on est dans l'index alors
+                if (strpos($_SERVER['REQUEST_URI'], '/Page_html/Page_PHP/') == true) { ?> 
+                  <a href="compte.php">Profil</a> <?php  //changer l'url au dessus
+                } else {?> 
+                 <a href="Page_html/Page_PHP/compte.php">Profil</a> <?php
+                 }
+                } ?>
           </li>
         </ul>
       </div>
@@ -190,9 +208,9 @@
           <?php
           if (strpos($_SERVER['REQUEST_URI'], '/Page_html/Page_PHP/') == true) {
           ?><li><a href="mention_legale.php">Mentions légales</a></li><?php // 
-          } else {
-            ?><li><a href="Page_html/Page_PHP/mention_legale.php">Mentions légales</a></li><?php // ../../Page_html/Page_PHP/sign_in_up.php
-          } ?>
+                                                                    } else {
+                                                                      ?><li><a href="Page_html/Page_PHP/mention_legale.php">Mentions légales</a></li><?php // ../../Page_html/Page_PHP/sign_in_up.php
+                                                                                          } ?>
         </ul>
       </div>
     </div>

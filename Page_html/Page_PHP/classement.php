@@ -314,6 +314,7 @@
     <?php
     require_once("../Page_Structuration/footer.php");
     ?>
+    <script src="../../public/JS/classement.js"></script>
 </body>
 
 </html>
