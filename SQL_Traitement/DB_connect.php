@@ -1,29 +1,29 @@
 <?php
-    $DBHOST = 'localhost';
-    $DBUSER = 'root';
-    $DBPASS = 'root';
-    $DBNAME = 'jreuttus_projet_web';
+$DBHOST = 'localhost';
+$DBUSER = 'root';
+$DBPASS = 'root';
+$DBNAME = 'jreuttus_projet_web_s4';
 
 
 
-    /* $DBHOST = 'localhost';
+/* $DBHOST = 'localhost';
     $DBUSER = 'jreuttus_group_projet';
     $DBPASS = 'Z5NcQWbHDK3wKUS';
-    $DBNAME = 'jreuttus_projet_web'; */
+    $DBNAME = 'jreuttus_projet_web_s4'; */
 
-    $dsn = "mysql:dbname=$DBNAME;host=$DBHOST";
+$dsn = "mysql:dbname=$DBNAME;host=$DBHOST";
 
-    //On se connecte à la base avec le trycatch
-    try{
-        //On va instancier PDO
-        $conn = new PDO($dsn, $DBUSER,$DBPASS);
-       // echo"On est connectés à la base de données";
+//On se connecte à la base avec le trycatch
+try {
+    //On va instancier PDO
+    $conn = new PDO($dsn, $DBUSER, $DBPASS);
+    // echo"On est connectés à la base de données";
 
-        //On s'assure d'envoyer des données en utf8 : 
-        $conn->exec("SET NAMES utf8");
+    //On s'assure d'envoyer des données en utf8 : 
+    $conn->exec("SET NAMES utf8");
 
-            //On définit un mode de fetch par défault pour ne pas le spécifier à chaque fetch:
-        $conn->setAttribute(PDO::FETCH_ASSOC,PDO::ERRMODE_EXCEPTION);
-    }catch(PDOException $e){
-        die($e->getMessage());
-    }
+    //On définit un mode de fetch par défault pour ne pas le spécifier à chaque fetch:
+    $conn->setAttribute(PDO::FETCH_ASSOC, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die($e->getMessage());
+}

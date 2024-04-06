@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `jreuttus_projet_web`
+-- Base de données : `jreuttus_projet_web_s4`
 --
-CREATE DATABASE IF NOT EXISTS `jreuttus_projet_web_S4` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `jreuttus_projet_web_S4`;
+CREATE DATABASE IF NOT EXISTS `jreuttus_projet_web_s4_S4` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `jreuttus_projet_web_s4_S4`;
 
 -- --------------------------------------------------------
 

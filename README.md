@@ -7,7 +7,7 @@ Projet_WEB_PHP_S2
 Pour la première connection il faut setup la base de donnée en hébérgant le projet puis en passant par ce liens
 http://localhost/Projet_WEB_PHP/Base_donnee/index.php
 
-si vous voulez voir votre nouvelle base de donnée allez ici : http://localhost/phpMyAdmin/index.php?route=/database/structure&server=1&db=jreuttus_projet_web
+si vous voulez voir votre nouvelle base de donnée allez ici : http://localhost/phpMyAdmin/index.php?route=/database/structure&server=1&db=jreuttus_projet_web_s4
 
 ### Setup parseur si /vendor composer.json et composer.lock non crée
 

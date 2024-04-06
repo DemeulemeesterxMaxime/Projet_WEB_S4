@@ -19,7 +19,7 @@ $file = "SQL_FILE/_DATABASEV10.sql";
 $sql = file_get_contents($file);
 if ($conn->multi_query($sql)) {
     header('Location:index.php');
-    /* echo "La base de données jreuttus_projet_web à été crée avec succès";
+    /* echo "La base de données jreuttus_projet_web_s4 à été crée avec succès";
     echo"<br><button><a href='index.php'>Découvrir le site</a></button>"; */
 } else {
     echo "Erreur lors de la création de votre base de données : " . $conn->error;

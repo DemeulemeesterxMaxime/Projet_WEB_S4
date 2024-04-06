@@ -4,7 +4,7 @@
 $host = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "jreuttus_projet_web";
+$dbname = "jreuttus_projet_web_s4";
 
 // Connexion à la base de données
 $conn = new mysqli($host, $username, $password, $dbname);

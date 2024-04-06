@@ -12,10 +12,10 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
--- Base de données : `jreuttus_projet_web`
+-- Base de données : `jreuttus_projet_web_s4`
 --
-CREATE DATABASE IF NOT EXISTS `jreuttus_projet_web` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `jreuttus_projet_web`;
+CREATE DATABASE IF NOT EXISTS `jreuttus_projet_web_s4` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `jreuttus_projet_web_s4`;
 
 -- --------------------------------------------------------
 

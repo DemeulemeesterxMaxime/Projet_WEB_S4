@@ -1,4 +1,4 @@
-USE jreuttus_projet_web;
+USE jreuttus_projet_web_s4;
 ALTER TABLE module DISABLE KEYS;
 ALTER TABLE matiere DISABLE KEYS;
 ALTER TABLE admin DISABLE KEYS;
