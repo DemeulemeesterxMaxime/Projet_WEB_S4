@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(express.static("public"));
 
-/
+
 // Middleware pour parser les requêtes POST
 app.use(bodyParser.urlencoded({ extended: true }));
 
