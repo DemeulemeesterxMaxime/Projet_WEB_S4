@@ -1,0 +1,11 @@
+.graph{
+   width: 70%;
+   height: 500px;
+   height: auto;
+   display: flex;
+   justify-content: center;  
+}
+
+#linec{
+    height: 300px;
+}
