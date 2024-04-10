@@ -62,5 +62,3 @@ app.listen(port, () => {
   console.log(`Serveur démarré sur le port ${port}`);
 });
 
-
-// Path: public/JS/note.js
