@@ -407,18 +407,36 @@ ALTER TABLE `matiere`
 --
 -- Déclencheurs `eleve`
 --
-
+DELIMITER //
 CREATE TRIGGER `add_modules_and_matieres` AFTER INSERT ON `eleve`
 FOR EACH ROW
 BEGIN
     INSERT INTO eleve_module (id_eleve, id_module)
-    VALUES (NEW.id_eleve, 1), (NEW.id_eleve, 2), (NEW.id_eleve, 3), (NEW.id_eleve, 4);
-
+    VALUES (NEW.id_eleve, 1), (NEW.id_eleve, 2), (NEW.id_eleve, 3), (NEW.id_eleve, 4), (NEW.id_eleve, 5);
     INSERT INTO eleve_matiere (id_eleve, id_matiere)
     SELECT NEW.id_eleve, id_matiere FROM Matiere;
 END;
-COMMIT;
+//
 
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER ajout_matiere_nouvel_eleve
+AFTER INSERT ON eleve
+FOR EACH ROW
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    
+    WHILE i <= 26 DO
+        INSERT INTO eleve_matiere (id_eleve, id_matiere) VALUES (NEW.id_eleve, i);
+        SET i = i + 1;
+    END WHILE;
+END;
+//
+
+DELIMITER ;
+COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

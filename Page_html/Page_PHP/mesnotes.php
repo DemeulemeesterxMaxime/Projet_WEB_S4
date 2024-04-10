@@ -98,24 +98,27 @@ try {
     }
         ?>
 
-
-        <div class="classement-table">
-            <?php
-            $x = isset($_GET['x']) ? intval($_GET['x']) : 10;
-            ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nom de la note</th>
-                        <th>Matière</th>
-                        <th>Date</th>
-                        <?php
-                        if (isset($_GET['modif'])) {
-                            echo '<th>';
-                        } else {
-                            echo '<th id="thtab">';
-                        }
-                        ?>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Rechercher...">
+                <div id="search-results"></div>
+            </div>
+            <div class="classement-table">
+                <?php
+                $x = isset($_GET['x']) ? intval($_GET['x']) : 10;
+                ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom de la note</th>
+                            <th>Matière</th>
+                            <th>Date</th>
+                            <?php
+                            if (isset($_GET['modif'])) {
+                                echo '<th>';
+                            } else {
+                                echo '<th id="thtab">';
+                            }
+                            ?>
 
                         <div class="ctn">
                             <div>Mes notes - Index<i class="fa-solid fa-address-book fa-fade fa-lg" style="color: #f06b42; margin-left:5px;"></i></div>
@@ -199,14 +202,14 @@ try {
     require_once("../Page_Structuration/footer.php");
     ?>
 
-    <div class="button_container">
-        <button class="btn">
-            <a href="add_note.php">
-                <span id="col"><i class="fa-solid fa-plus"></i>Ajouter note</span></a>
-        </button>
-    </div>
-    </div>
-    <script src="../../public/JS/note.js"></script>
+        <div class="button_container">
+            <button class="btn">
+                <a href="add_note.php">
+                    <span id="col"><i class="fa-solid fa-plus"></i>Ajouter note</span></a>
+            </button>
+        </div>
+        </div>
+        <script src="../../public/JS/note.js"></script>
 </body>
 
 </html>
