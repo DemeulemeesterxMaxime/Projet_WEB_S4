@@ -89,7 +89,10 @@
             }
             ?>
 
-
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Rechercher...">
+                <div id="search-results"></div>
+            </div>
             <div class="classement-table">
                 <?php
                 $x = isset($_GET['x']) ? intval($_GET['x']) : 10;
@@ -196,6 +199,7 @@
             </button>
         </div>
         </div>
+        <script src="../../public/JS/note.js"></script>
 </body>
 
 </html>
