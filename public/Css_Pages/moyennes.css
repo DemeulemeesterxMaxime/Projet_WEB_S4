@@ -1,29 +1,71 @@
 .titre-moyenne{
     text-align: center;
 }
-.classement-table table{
+#classement-table table{
     color: var(--white);
 	border-collapse: collapse;
 	width: 100%;
+    margin-top: 2%;
+    margin-bottom: 5%;
 		
 }
-.classement-table thead{
-    background-color: #847494;
-}
-.classement-table tbody{
-    background-color: var(--orange_clair);
-    border: 2px solid var(--white);
+#matiere-table table{
+    color: var(--white);
+	border-collapse: collapse;
+	width: 100%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+		
 }
 
-.classement-table th, td{
+#classement-table th, td{
     text-align: center;
     padding: 10px 20px 10px 20px;
     border: 2px solid var(--white);
+    background-color: #847494;
+
+}
+#matiere-table th, td{
+    text-align: center;
+    padding: 10px 20px 10px 20px;
+    border: 2px solid var(--white);
+    background-color: #847494;
+
 }
 .nom-matiere{
     width: 40em;
 }
 
-.classement-table tbody tr:nth-child(even) {
-	background-color: var(--orange_isen);
+#classement-table td{
+    width: 80%;
+
+}
+#matiere-table td{
+    width: 80%;
+
+}
+.titreClassement{
+    color: var(--orange_isen);
+    text-align: center;
+    width: 100%;
+    font-size: 2em;
+    margin: auto;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 40%;
+    background-color: var(--violet_isen);
+    border-radius: 5px;
+    
+
+
+}
+.conteneurCanva{
+    width: 50%;
+    margin: auto;
+}
+
+#matiere-table table, #classement-table table{
+    width: 80%;
+    margin: auto;
 }
