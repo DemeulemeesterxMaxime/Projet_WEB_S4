@@ -66,10 +66,10 @@ try {
         $id = $_SESSION['id'];
         if (isset($_POST["date"]) && $_POST["date"] != "none") {
             if ($_POST["date"] == "Croissant") {
-                $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval";
+                $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval DESC";
             }
             if ($_POST["date"] == "Decroissant") {
-                $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval DESC";
+                $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval";
             }
         } else if (isset($_POST["matiere"]) && $_POST["matiere"] != "tous") {
             if ($_POST["matiere"] == "1") {
