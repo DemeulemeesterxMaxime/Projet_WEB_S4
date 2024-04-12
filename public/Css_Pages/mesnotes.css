@@ -63,7 +63,7 @@
     50% { background-color: var(--white); }
   }
   
-  #err {
+  .err {
     color: red;
     -webkit-animation: clignote 3s linear infinite;
             animation: clignote 3s linear infinite;
