@@ -61,11 +61,16 @@
 
 }
 .conteneurCanva{
-    width: 50%;
+    height: 300px;
+    width: 70%;
     margin: auto;
+}
+.conteneurCanva canvas{
+    width: 70%;
 }
 
 #matiere-table table, #classement-table table{
     width: 80%;
     margin: auto;
 }
+

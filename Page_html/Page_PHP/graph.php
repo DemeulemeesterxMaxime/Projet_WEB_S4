@@ -50,9 +50,18 @@
             $resultat = $reqPrep->fetchAll(PDO::FETCH_ASSOC);
             // Convertir en JSON
             $json = json_encode($resultat);
+            $req3 = "SELECT * FROM eleve_matiere WHERE id_eleve=:id AND moyenne_matiere!='NULL'";
+            $reqPrep3 = $conn->prepare($req3);
+            $reqPrep3->execute(array(':id' => $id));
+            $resultat3 = $reqPrep3->fetchAll(PDO::FETCH_ASSOC);
+            $json2=json_encode($resultat3);
             
             // Afficher le JSON
-            ?><p id="para_requete" style="display: none;"><?php echo $json ?></p><?php // Correction : Utiliser display: none; pour cacher l'élément
+            ?><p id="para_requete" style="display: none;"><?php echo $json ?></p>
+            <p id="para_requete2" style="display: none;"><?php echo $json2 ?></p>
+            
+            
+            <?php // Correction : Utiliser display: none; pour cacher l'élément
             $conn = NULL; // On ferme la connexion
         } catch (Exception $e) {
             die("Erreur : " . $e->getMessage());

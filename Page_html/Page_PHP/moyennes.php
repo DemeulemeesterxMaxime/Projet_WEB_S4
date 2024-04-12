@@ -126,6 +126,13 @@ if (isset($_SESSION["id"])) {
             });
         });
 
+        let points = [];
+        let xmin=0;
+        let xmax=4; 
+        for (let x = xmin; x <= xmax; x += 0.1) {
+            points.push({x: x, y: 10});
+        }
+
         // Création du graphique pour les modules
         const ctxModule = document.getElementById('moduleChart').getContext('2d');
         const moduleChart = new Chart(ctxModule, {
@@ -137,13 +144,31 @@ if (isset($_SESSION["id"])) {
                     data: dataModule,
                     backgroundColor: '#F9A88C',
                     borderColor: '#F9A88C',
-                    borderWidth: 1
-                }]
+                    borderWidth: 1,
+                    order: 1
+                },
+                {
+                label: 'Moyenne à 10',
+                data: points,
+                backgroundColor: 'rgb(255, 0, 0)',
+                borderColor: 'rgb(255, 0, 0)',
+                type: 'line',
+                order: 0
+              }
+            
+            ]
+            },
+            tooltips: {
+                enabled: true,
+                mode: 'index',
+                intersect: false,
             },
             options: {
+                maintainAspectRatio: false, // Permet au graphique de ne pas maintenir un ratio d'aspect fixe
                 scales: {
                     y: {
-                        beginAtZero: true
+                        min: 0,
+                        max: 20,
                     }
                 }
             }
@@ -174,13 +199,34 @@ if (isset($_SESSION["id"])) {
                     data: dataMatiere,
                     backgroundColor: '#F9A88C',
                     borderColor: '#F9A88C',
-                    borderWidth: 1
-                }]
+                    borderWidth: 1,
+                    order: 1
+                },
+                {
+                label: 'Moyenne à 10',
+                data: points,
+                backgroundColor: 'rgb(255, 0, 0)',
+                borderColor: 'rgb(255, 0, 0)',
+                type: 'line',
+                order: 0
+                }
+            
+            
+            ]
+
             },
+            tooltips: {
+                enabled: true,
+                mode: 'index',
+                intersect: false,
+            },
+
             options: {
+                maintainAspectRatio: false, // Permet au graphique de ne pas maintenir un ratio d'aspect fixe
                 scales: {
                     y: {
-                        beginAtZero: true
+                        min: 0,
+                        max: 20,
                     }
                 }
             }
