@@ -50,7 +50,7 @@
                 </form>
                 <div class="search-container">
                     <input type="text" id="search-input" placeholder="Rechercher votre note ! ">
-                    <div id="search-results"></div>
+                    <!-- <div id="results"></div> -->
                 </div>
             </div>
         </div>
@@ -63,37 +63,39 @@
         //require("SQL_Traitement/DB_connect.php");
         try {
             $id = $_SESSION['id'];
-            if (isset($_POST["date"]) && $_POST["date"] != "none") {
-                if ($_POST["date"] == "Croissant") {
-                    $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval DESC";
-                }
-                if ($_POST["date"] == "Decroissant") {
-                    $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval";
-                }
-            } else if (isset($_POST["matiere"]) && $_POST["matiere"] != "tous") {
-                echo ("on est dans le cas ou on a choisi une matiere");
-                if ($_POST["matiere"] == "1") {
-                    echo ("on est dans le cas ou on a choisi la matiere 1");
-                    $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 1;";
-                } else if ($_POST["matiere"] == "2") {
-                    $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 2;";
-                } else if ($_POST["matiere"] == "3") {
-                    $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 3;";
-                } else if ($_POST["matiere"] == "4") {
-                    $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 4;";
-                }
-            } else {
-                //La requete SQL
-                $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval ";
-            }
-            $req = $conn->prepare($reqPrep); //Préparer la requete
-            $req->execute(array(':id' => $id)); //Executer la requete
-            $resultat = $req->fetchAll(PDO::FETCH_ASSOC); //récupération du résultat 
-            //$nombre=count($resultat);
-            //Requete sql pour récuperer les noms des produits et leurs références de la table produit pour la catégorie boisson (CodeCategorie =1)
-            //préparer, exécuter la requête et récuperer le résultat
-            $conn = NULL; // On ferme la connexion
+            if ($_COOKIE["search_query"] != 1) {
 
+                if (isset($_POST["date"]) && $_POST["date"] != "none") {
+                    if ($_POST["date"] == "Croissant") {
+                        $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval DESC";
+                    }
+                    if ($_POST["date"] == "Decroissant") {
+                        $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval";
+                    }
+                } else if (isset($_POST["matiere"]) && $_POST["matiere"] != "tous") {
+                    echo ("on est dans le cas ou on a choisi une matiere");
+                    if ($_POST["matiere"] == "1") {
+                        echo ("on est dans le cas ou on a choisi la matiere 1");
+                        $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 1;";
+                    } else if ($_POST["matiere"] == "2") {
+                        $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 2;";
+                    } else if ($_POST["matiere"] == "3") {
+                        $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 3;";
+                    } else if ($_POST["matiere"] == "4") {
+                        $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 4;";
+                    }
+                } else {
+                    //La requete SQL
+                    $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval ";
+                }
+                $req = $conn->prepare($reqPrep); //Préparer la requete
+                $req->execute(array(':id' => $id)); //Executer la requete
+                $resultat = $req->fetchAll(PDO::FETCH_ASSOC); //récupération du résultat 
+                //$nombre=count($resultat);
+                //Requete sql pour récuperer les noms des produits et leurs références de la table produit pour la catégorie boisson (CodeCategorie =1)
+                //préparer, exécuter la requête et récuperer le résultat
+                $conn = NULL; // On ferme la connexion
+            }
         } catch (PDOException $e) {
             echo "Erreur : " . $e->getMessage();
         }
@@ -101,7 +103,21 @@
 
 
         <div class="classement-table">
-            <table class="tableau_verif">
+            <table class="tableau_verif" id="tab_1">
+                <thead>
+                    <tr>
+                        <th>Nom de la note</th>
+                        <th>Matière</th>
+                        <th>Date</th>
+                        <th class="thtab">Mes notes</th>
+                        <th class="thta">Modifier</th>
+                    </tr>
+                </thead>
+                <tbody id="results">
+                    <!-- <span id="results"></span> -->
+                </tbody>
+            </table>
+            <table class="tableau_verif" id="tab_2">
                 <thead>
                     <tr>
                         <th>Nom de la note</th>
@@ -157,7 +173,7 @@
             <button id="btn_pasnote" onclick="redirection()"> Ajouter des notes</button>
         </div>
     </div>
-    <script src="../../public/JS/note.js"></script>
+    <script type="module" src="../../public/JS/note.js"></script>
 </body>
 
 </html>

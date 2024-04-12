@@ -373,7 +373,7 @@ color: white;
       font-size: 16px;
   }
 
-  #search-results {
+  /* #search-results {
       position: absolute;
       top: 100%;
       left: 0;
@@ -391,7 +391,7 @@ color: white;
 
   .result-item:last-child {
       border-bottom: none;
-  }
+  } */
 
 
 /*Quand il n'y a pas de note */

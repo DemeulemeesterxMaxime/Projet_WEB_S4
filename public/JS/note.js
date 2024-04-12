@@ -1,6 +1,11 @@
 const searchInput = document.getElementById("search-input");
-const searchResults = document.getElementById("search-results");
+const searchResults = document.getElementById("results");
 const userId = document.cookie.match(/user_id=([^;]+)/)?.[1];
+const tab_2 = document.getElementById("tab_2");
+const tab_1 = document.getElementById("tab_1");
+
+tab_1.style.display = "none";
+
 
 if (userId) {
   console.log(`Identifiant utilisateur : ${userId}`);
@@ -8,13 +13,20 @@ if (userId) {
   console.log("Aucun cookie 'user_id' trouvé");
 }
 
+document.cookie = "search_query=0; expires=Fri, 31 Dec 2026 23:59:59 GMT; path=/";
+
+
 searchInput.addEventListener("input", function () {
   const searchText = this.value.trim();
-  console.log("Recherche futur de :", searchText);
   if (searchText === "") {
+    tab_1.style.display = "none";
+    tab_2.style.display = "block";
     searchResults.innerHTML = "";
     searchResults.style.display = "none";
     return;
+  } else {
+    tab_2.style.display = "none";
+    tab_1.style.display = "block";
   }
   console.log("Recherche de :", searchText);
   fetch("http://localhost:3000/mesnotes", {
@@ -29,14 +41,25 @@ searchInput.addEventListener("input", function () {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.results);
-      const results = data.results;
-      let resultHtml = "";
-      
-      results.forEach((result) => {
-        resultHtml += `<div class="result-item">${result}</div>`;
-      });
 
+      console.log("Résultats de la recherche :", data.resultsToSend);
+      const results = data.resultsToSend;
+      let resultHtml = ``;
+
+      results.forEach((result) => {
+        //on va traiter la date pour seulement afficher la date sans l'heure
+        let date = result.date_eval;
+        let date_split = date.split('T');
+        result.date_eval = date_split[0];
+
+        resultHtml += `<tr>
+        <td>${result.epreuve}</td>
+        <td>${result.code}</td>
+        <td>${result.date_eval}</td>
+        <td>${result.note}</td>
+        <td><a href='modification_note.php?id_modif=${result.id_eval}'><i class='fa-regular fa-pen-to-square color'></i></a></td>
+      </tr>`;
+      });
       searchResults.innerHTML = resultHtml;
       searchResults.style.display = "block";
     })

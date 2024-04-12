@@ -4,6 +4,7 @@ const mysql = require("mysql");
 const cors = require("cors"); // Add cors library
 const cookieParser = require("cookie-parser");
 const app = express(); // Enable CORS for all origins during development (not recommended for production)
+const { affichage_note } = require("./public/JS/fonction.js");
 
 let conn = mysql.createConnection({
   host: "localhost",
@@ -36,10 +37,10 @@ app.use(bodyParser.json()); // Ajouter cette ligne pour analyser les requêtes a
 
 app.post("/mesnotes", (req, res) => {
   // On va récupérer dans le cookie l'id de l'utilisateur
-  console.log("Requête POST sur /mesnotes avec la req : ", req.body);
+  //console.log("Requête POST sur /mesnotes avec la req : ", req.body);
   const searchQuery = req.body.searchQuery;
   const id_use = req.body.id;
-  console.log("Recherche de :", searchQuery, "pour l'utilisateur :", id_use);
+  //console.log("Recherche de :", searchQuery, "pour l'utilisateur :", id_use);
   let reqPrep =
     "SELECT * FROM eval WHERE code LIKE ? AND id_eval IN (SELECT id_eval FROM eval_eleve WHERE id_eleve = ?)";
   // La syntaxe de la requête préparée doit être comme suit : 
@@ -50,10 +51,22 @@ app.post("/mesnotes", (req, res) => {
       console.error("Erreur lors de l'exécution de la requête serveur :", err);
       return;
     }
-    console.log("Résultat de la requête :", resultat);
-    const results = resultat.map((r) => r.code);
-    res.json({ results });
-  });
+    //console.log("Résultat de la requête :", resultat);
+    Promise.all(resultat.map((row) => 
+      affichage_note(row.code, conn).then((code) => ({
+        epreuve: row.epreuve,
+        code: code,
+        date_eval: row.date_eval,
+        note: row.note,
+        id_eval: row.id_eval,
+      }))
+    )).then((resultsToSend) => {
+      console.log("Résultats de la recherche :", resultsToSend);
+      res.json({ resultsToSend });
+    }).catch((err) => {
+      console.error("Erreur lors de l'exécution de la requête serveur :", err);
+    });
+      });
 });
 
 // Port d'écoute du serveur
