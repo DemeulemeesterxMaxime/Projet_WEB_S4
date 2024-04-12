@@ -148,6 +148,9 @@
     background-position: -200% 0, right 0.5em center;
   }
 }
+.color{
+color: white;
+}
 .ctn{
   display: flex;
   flex-direction: row;
@@ -335,11 +338,11 @@
     transition-duration: 0.4s;
   }
 
-  #thtab{
-    width: calc(25vw + 5px);
+  .thtab{
+    width: calc(19vw + 5px);
   }
-#thta{
-  width: calc(20vw + 5px);
+.thta{
+  width: calc(20vw + 8px);
 }
   .classement-table tbody::-webkit-scrollbar {
     width: 12px;
@@ -357,7 +360,6 @@
   
 
 
-  /* CSS POUR BARRE DE RECHERCHE 
   .search-container {
       position: relative;
       width: 300px;
@@ -389,7 +391,6 @@
   .result-item:last-child {
       border-bottom: none;
   }
-  */
 
 
 /*Quand il n'y a pas de note */

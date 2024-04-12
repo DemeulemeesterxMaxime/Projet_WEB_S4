@@ -2,11 +2,6 @@
 <html lang="fr">
 
 <head>
-
-
-
-
-
     <link rel="stylesheet" href="../../public/Css_Pages/modification_note.css">
     <?php require_once("../Page_Structuration/meta.php"); ?>
 
@@ -19,10 +14,10 @@
     if (empty($_SESSION['id'])) {
         header('Location: sign_in_up.php');
     } else {
-        if (isset($_POST['Appliquer-modif'])) {
+        if (isset($_GET['id_modif'])) {
             try {
                 require_once("../../SQL_Traitement/DB_connect.php");
-                $id = $_POST["choix"];
+                $id = $_GET['id_modif'];
                 $reqPrep = "SELECT * FROM eval WHERE id_eval=:id"; //La requere SQL
                 $req = $conn->prepare($reqPrep); //Préparer la requete
                 $reqTAb = array(':id' => $id);

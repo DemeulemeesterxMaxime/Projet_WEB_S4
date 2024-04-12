@@ -48,11 +48,6 @@
                         <option value="Decroissant">De la plus vieille</option>
                     </select>
                 </form>
-                <h3>Modifier :</h3>
-                <form action="mesnotes.php" method="get">
-                    <input type="hidden" name="modif" value="1">
-                    <input type="submit" class="modifier-note" name="modif" value="Cliquer pour modifier">
-                </form>
             </div>
         </div>
 
@@ -62,95 +57,62 @@
         require_once("../../SQL_Traitement/DB_connect.php");
         /* Pour le index */
         //require("SQL_Traitement/DB_connect.php");
-try {
-        $id = $_SESSION['id'];
-        if (isset($_POST["date"]) && $_POST["date"] != "none") {
-            if ($_POST["date"] == "Croissant") {
-                $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval DESC";
+        try {
+            $id = $_SESSION['id'];
+            if (isset($_POST["date"]) && $_POST["date"] != "none") {
+                if ($_POST["date"] == "Croissant") {
+                    $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval DESC";
+                }
+                if ($_POST["date"] == "Decroissant") {
+                    $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval";
+                }
+            } else if (isset($_POST["matiere"]) && $_POST["matiere"] != "tous") {
+                echo ("on est dans le cas ou on a choisi une matiere");
+                if ($_POST["matiere"] == "1") {
+                    echo ("on est dans le cas ou on a choisi la matiere 1");
+                    $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 1;";
+                } else if ($_POST["matiere"] == "2") {
+                    $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 2;";
+                } else if ($_POST["matiere"] == "3") {
+                    $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 3;";
+                } else if ($_POST["matiere"] == "4") {
+                    $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 4;";
+                }
+            } else {
+                //La requete SQL
+                $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval ";
             }
-            if ($_POST["date"] == "Decroissant") {
-                $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval";
-            }
-        } else if (isset($_POST["matiere"]) && $_POST["matiere"] != "tous") {
-            if ($_POST["matiere"] == "1") {
-                $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 1;";
-            } else if($_POST["matiere"] == "2"){
-                $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 2;";
-            } else if($_POST["matiere"] == "3"){
-                $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 3;";
-            } else if($_POST["matiere"] == "4"){
-                $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 4;";
-            }
-        } else {
-            //La requete SQL
-            $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval ";
-        }
-        $req = $conn->prepare($reqPrep); //Préparer la requete
-        $req->execute(array(':id' => $id)); //Executer la requete
-        $resultat = $req->fetchAll(PDO::FETCH_ASSOC); //récupération du résultat 
-        //$nombre=count($resultat);
-        //Requete sql pour récuperer les noms des produits et leurs références de la table produit pour la catégorie boisson (CodeCategorie =1)
-        //préparer, exécuter la requête et récuperer le résultat
-        $conn = NULL; // On ferme la connexion
+            $req = $conn->prepare($reqPrep); //Préparer la requete
+            $req->execute(array(':id' => $id)); //Executer la requete
+            $resultat = $req->fetchAll(PDO::FETCH_ASSOC); //récupération du résultat 
+            //$nombre=count($resultat);
+            //Requete sql pour récuperer les noms des produits et leurs références de la table produit pour la catégorie boisson (CodeCategorie =1)
+            //préparer, exécuter la requête et récuperer le résultat
+            $conn = NULL; // On ferme la connexion
 
-    } catch (PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
-    }
+        } catch (PDOException $e) {
+            echo "Erreur : " . $e->getMessage();
+        }
         ?>
 
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Rechercher votre note ! ">
-                <div id="search-results"></div>
-            </div>
-            <div class="classement-table">
-                <?php
-                $x = isset($_GET['x']) ? intval($_GET['x']) : 10;
-                ?>
-                <table class="tableau_verif">
-                    <thead>
-                        <tr>
-                            <th>Nom de la note</th>
-                            <th>Matière</th>
-                            <th>Date</th>
-                            <?php
-                            if (isset($_GET['modif'])) {
-                                echo '<th>';
-                            } else {
-                                echo '<th id="thtab">';
-                            }
-                            ?>
-
-                        <div class="ctn">
-                            <div>Mes notes - Index<i class="fa-solid fa-address-book fa-fade fa-lg" style="color: #f06b42; margin-left:5px;"></i></div>
-                            <div>
-                                <form id="selectx" method="get">
-                                    <select name="x" id="var" onchange="this.form.submit()">
-                                        <option value="1" <?php echo ($x == 1) ? 'selected' : ''; ?>>1</option>
-                                        <option value="2" <?php echo ($x == 2) ? 'selected' : ''; ?>>2</option>
-                                        <option value="5" <?php echo ($x == 5) ? 'selected' : ''; ?>>5</option>
-                                        <option value="10" <?php echo ($x == 10) ? 'selected' : ''; ?>>10</option>
-                                        <option value="20" <?php echo ($x == 20) ? 'selected' : ''; ?>>20</option>
-                                        <option value="25" <?php echo ($x == 25) ? 'selected' : ''; ?>>25</option>
-                                        <option value="50" <?php echo ($x == 50) ? 'selected' : ''; ?>>50</option>
-                                        <option value="75" <?php echo ($x == 75) ? 'selected' : ''; ?>>75</option>
-                                        <option value="100" <?php echo ($x == 100) ? 'selected' : ''; ?>>100</option>
-                                    </select>
-                                </form>
-                            </div>
-                        </div>
-
-                        </th>
-                        <?php
-                        if (isset($_GET['modif'])) {
-                            echo "<th id='thta'>Modifier</th>";
-                        }
-                        ?>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Rechercher votre note ! ">
+            <div id="search-results"></div>
+        </div>
+        <div class="classement-table">
+            <table class="tableau_verif">
+                <thead>
+                    <tr>
+                        <th>Nom de la note</th>
+                        <th>Matière</th>
+                        <th>Date</th>
+                        <th class="thtab">Mes notes</th>
+                        <th class="thta">Modifier</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <form action="modification_note.php" method="post">
                         <?php
-                        $counter = 0;
+                        //$counter = 0;
                         foreach ($resultat as $row) {
                             // if ($counter >= $x) {
                             //     break;
@@ -167,57 +129,34 @@ try {
                             } else {
                                 echo '<tr>';
                             }
-                            echo "<td>$row[epreuve]</td><td>$CodeString</td><td>$row[date_eval]</td><td>$row[note]</td></tr>";
-
-                            if (isset($_POST["Appliquer"])) {
-                                if ($ton_module == $_POST["Matiere"]) {
-                                    echo "<td>$row[epreuve]</td><td>$CodeString</td><td>$row[date_eval]</td><td>$row[note]</td></tr>";
-                                }
-                                if (($_POST["Matiere"] == "tous")) {
-                                    echo "<td>$row[epreuve]</td><td>$CodeString</td><td>$row[date_eval]</td><td>$row[note]</td></tr>";
-                                }
-                            } else {
-                                if (isset($_GET['modif'])) {
-                                    echo "<td>$row[epreuve]</td><td>$CodeString</td><td>$row[date_eval]</td><td>$row[note]</td><td><input type='radio' name='choix' id='option1' value='$row[id_eval]'></td></tr>";
-                                } else {
-                                    echo "<td>$row[epreuve]</td><td>$CodeString</td><td>$row[date_eval]</td><td>$row[note]</td></tr>";
-                                }
-                            }
-                            $counter++;
+                            echo"<td>$row[epreuve]</td><td>$CodeString</td><td>$row[date_eval]</td><td>$row[note]</td><td><a href='modification_note.php?id_modif=" . $row['id_eval'] . "'><i class='fa-regular fa-pen-to-square color'></i></a></td></tr>";
                         }
                         ?>
                 </tbody>
             </table>
-            <?php
-            if (isset($_GET['modif'])) {
-            ?>
-                <button type="submit" id="Appliquer-modif" name="Appliquer-modif" value="Appliquer-modif"><span id="span-but">Appliquer les modifications</span></button>
-            <?php
-            }
-            ?>
-            </form>
         </div>
     <?php
+
     }
     require_once("../Page_Structuration/footer.php");
     ?>
 
-        <div class="button_container">
-            <button class="btn">
-                <a href="add_note.php">
-                    <span id="col"><i class="fa-solid fa-plus"></i>Ajouter note</span></a>
-            </button>
-        </div>
-        </div>
+    <div class="button_container">
+        <button class="btn">
+            <a href="add_note.php">
+                <span id="col"><i class="fa-solid fa-plus"></i>Ajouter note</span></a>
+        </button>
+    </div>
+    </div>
 
-        <div id="div_pasnote">
-            <div id="div_pasnote_flex">
-                <div id="i_pasnote"><i class="fa-solid fa-xmark"></i></div>
-                <h2>Il n'y a aucune "Note" rentré, veuillez rentrer des notes</h2>
-                <button id="btn_pasnote"onclick="redirection()"> Ajouter des notes</button>
-            </div>
+    <div id="div_pasnote">
+        <div id="div_pasnote_flex">
+            <div id="i_pasnote"><i class="fa-solid fa-xmark"></i></div>
+            <h2>Il n'y a aucune "Note" rentré, veuillez rentrer des notes</h2>
+            <button id="btn_pasnote" onclick="redirection()"> Ajouter des notes</button>
         </div>
-        <script src="../../public/JS/note.js"></script>
+    </div>
+    <script src="../../public/JS/note.js"></script>
 </body>
 
 </html>
