@@ -35,6 +35,11 @@ if (isset($_SESSION["id"])) {
     $reqPrep4 = $conn->prepare($req4);
     $reqPrep4->execute();
     $resultat4 = $reqPrep4->fetchAll(PDO::FETCH_ASSOC);
+
+    $req5 = "SELECT * FROM eleve_module";
+    $reqPrep5 = $conn->prepare($req5);
+    $reqPrep5->execute();
+    $resultat5 = $reqPrep5->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // Il n'est pas nécessaire de dupliquer l'exemple suivant, c'était juste pour l'illustration.
@@ -53,7 +58,8 @@ if (isset($_SESSION["id"])) {
         document.addEventListener('DOMContentLoaded', function() {
             var resultat = <?php echo json_encode($resultat) ?: '[]'; ?>;
             var resultat2 = <?php echo json_encode($resultat2) ?: '[]'; ?>;
-            console.log(resultat, resultat2);
+            var resultat5 = <?php echo json_encode($resultat5) ?: '[]'; ?>;
+            console.log(resultat, resultat2,resultat5);
 
             let correspondances = [];
 
@@ -115,6 +121,7 @@ if (isset($_SESSION["id"])) {
         // Données pour le premier graphique (Notes des modules)
         var resultat = <?php echo json_encode($resultat) ?: '[]'; ?>;
         var resultat2 = <?php echo json_encode($resultat2) ?: '[]'; ?>;
+        var resultat5 = <?php echo json_encode($resultat5) ?: '[]'; ?>;
         let labelsModule = [];
         let dataModule = [];
         resultat.forEach(row => {
@@ -125,6 +132,46 @@ if (isset($_SESSION["id"])) {
                 }
             });
         });
+        //pour la moyenne générale 
+       // Créer un objet pour stocker les moyennes par matière
+        const moyennesParMatiere = {};
+
+        // Parcourir chaque résultat pour calculer les moyennes par matière
+        resultat5.forEach(row => {
+            const matiere = resultat2.find(ligne => ligne.id_module === row.id_module)?.matiere;
+            if (matiere) {
+                // Si la matière existe, ajouter la moyenne du module à son total
+                if (moyennesParMatiere[matiere]) {
+                    moyennesParMatiere[matiere].push(parseFloat(row.moyenne_module));
+                } else {
+                    moyennesParMatiere[matiere] = [parseFloat(row.moyenne_module)];
+                }
+            }
+        });
+
+        // Créer des tableaux pour stocker les noms des matières et les moyennes correspondantes
+        const nomsMatières = [];
+        const moyennesMatières = [];
+
+        // Calculer la moyenne de chaque matière et remplir les tableaux correspondants
+        for (const matiere in moyennesParMatiere) {
+            const moyennesModules = moyennesParMatiere[matiere];
+            const moyenneMatiere = moyennesModules.reduce((acc, curr) => acc + curr, 0) / moyennesModules.length;
+            nomsMatières.push(matiere);
+            moyennesMatières.push(moyenneMatiere.toFixed(2)); // Arrondir la moyenne à 2 décimales
+        }
+
+        console.log(nomsMatières);
+        console.log(moyennesMatières);
+
+
+        //pour la moyenne ligne à 10
+        let points = [];
+        let xmin=0;
+        let xmax=4; 
+        for (let x = xmin; x <= xmax; x += 0.1) {
+            points.push({x: x, y: 10});
+        }
 
         // Création du graphique pour les modules
         const ctxModule = document.getElementById('moduleChart').getContext('2d');
@@ -137,13 +184,41 @@ if (isset($_SESSION["id"])) {
                     data: dataModule,
                     backgroundColor: '#F9A88C',
                     borderColor: '#F9A88C',
-                    borderWidth: 1
-                }]
+                    borderWidth: 1,
+                    order: 2
+                },
+                
+                {
+                label: 'Moyenne générale',
+                data: moyennesMatières,
+                backgroundColor: 'rgb(0,128,0)',
+                borderColor: 'rgb(0,128,0)',
+                type: 'line',
+                order: 1
+              },
+                
+                {
+                label: 'Moyenne à 10',
+                data: points,
+                backgroundColor: 'rgb(255, 0, 0)',
+                borderColor: 'rgb(255, 0, 0)',
+                type: 'line',
+                order: 0
+              }
+            
+            ]
+            },
+            tooltips: {
+                enabled: true,
+                mode: 'index',
+                intersect: false,
             },
             options: {
+                maintainAspectRatio: false, // Permet au graphique de ne pas maintenir un ratio d'aspect fixe
                 scales: {
                     y: {
-                        beginAtZero: true
+                        min: 0,
+                        max: 20,
                     }
                 }
             }
@@ -174,40 +249,73 @@ if (isset($_SESSION["id"])) {
                     data: dataMatiere,
                     backgroundColor: '#F9A88C',
                     borderColor: '#F9A88C',
-                    borderWidth: 1
-                }]
+                    borderWidth: 1,
+                    order: 1
+                },
+                {
+                label: 'Moyenne à 10',
+                data: points,
+                backgroundColor: 'rgb(255, 0, 0)',
+                borderColor: 'rgb(255, 0, 0)',
+                type: 'line',
+                order: 0
+                }
+            
+            
+            ]
+
             },
+            tooltips: {
+                enabled: true,
+                mode: 'index',
+                intersect: false,
+            },
+
             options: {
+                maintainAspectRatio: false, // Permet au graphique de ne pas maintenir un ratio d'aspect fixe
                 scales: {
                     y: {
-                        beginAtZero: true
+                        min: 0,
+                        max: 20,
                     }
                 }
             }
         });
     });
+
+    function toggleGraphiques() {
+            var moduleCanvas = document.getElementById('moduleChart');
+            var conteneur = document.getElementById('conteneurCanva1')
+            var displayStyle = moduleCanvas.style.display === 'none' ? 'block' : 'none';
+            moduleCanvas.style.display = displayStyle;
+            conteneur.style.display = displayStyle;
+        }
+        function toggleGraphiques2() {
+            var moduleCanvas = document.getElementById('matiereChart');
+            var conteneur = document.getElementById('conteneurCanva2')
+            var displayStyle = moduleCanvas.style.display === 'none' ? 'block' : 'none';
+            moduleCanvas.style.display = displayStyle;
+            conteneur.style.display = displayStyle;
+
+        }
 </script>
 
 </head>
 <body>
-<div id="classement-table">
-    <h2 class="titreClassement">Notes du Module</h2>
-    <div class="conteneurCanva">
-        <canvas id="moduleChart"></canvas>
+    <div id="classement-table">
+        <h2 class="titreClassement">Notes du Module</h2>
+        <button class="toggle-graph-button" onclick="toggleGraphiques()">Afficher/Cacher Graphiques</button>
+        <div id="conteneurCanva1">
+            <canvas id="moduleChart"></canvas>
+        </div>
     </div>
-</div>
-<div id="matiere-table">
-    <h2 class="titreClassement">Notes des matières</h2>
-    <div class="conteneurCanva">
-        <canvas id="matiereChart"></canvas>
+    <div id="matiere-table">
+        <h2 class="titreClassement">Notes des matières</h2>
+        <button class="toggle-graph-button" onclick="toggleGraphiques2()">Afficher/Cacher Graphiques</button>
+        <div id="conteneurCanva2">
+            <canvas id="matiereChart"></canvas>
+        </div>
     </div>
-</div>
-
-
-
-
-
-<!-- Le reste de votre code HTML ici -->
 <?php require_once("../Page_Structuration/footer.php"); ?>
 </body>
 </html>

@@ -1,71 +1,100 @@
 .titre-moyenne{
-    text-align: center;
+  text-align: center;
 }
 #classement-table table{
-    color: var(--white);
-	border-collapse: collapse;
-	width: 100%;
-    margin-top: 2%;
-    margin-bottom: 5%;
-		
+  color: var(--white);
+border-collapse: collapse;
+width: 100%;
+  margin-top: 2%;
+  margin-bottom: 5%;
+  
 }
 #matiere-table table{
-    color: var(--white);
-	border-collapse: collapse;
-	width: 100%;
-    margin-top: 2%;
-    margin-bottom: 5%;
-		
+  color: var(--white);
+border-collapse: collapse;
+width: 100%;
+  margin-top: 2%;
+  margin-bottom: 5%;
+  
 }
 
 #classement-table th, td{
-    text-align: center;
-    padding: 10px 20px 10px 20px;
-    border: 2px solid var(--white);
-    background-color: #847494;
+  text-align: center;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid var(--white);
+  background-color: #847494;
 
 }
 #matiere-table th, td{
-    text-align: center;
-    padding: 10px 20px 10px 20px;
-    border: 2px solid var(--white);
-    background-color: #847494;
+  text-align: center;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid var(--white);
+  background-color: #847494;
 
 }
 .nom-matiere{
-    width: 40em;
+  width: 40em;
 }
 
 #classement-table td{
-    width: 80%;
+  width: 80%;
 
 }
 #matiere-table td{
-    width: 80%;
+  width: 80%;
 
 }
 .titreClassement{
-    color: var(--orange_isen);
-    text-align: center;
-    width: 100%;
-    font-size: 2em;
-    margin: auto;
-    padding: 1em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    width: 40%;
-    background-color: var(--violet_isen);
-    border-radius: 5px;
-    
+  color: var(--orange_isen);
+  text-align: center;
+  width: 100%;
+  font-size: 2em;
+  margin: auto;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 40%;
+  background-color: var(--violet_isen);
+  border-radius: 5px;
+  
 
 
 }
-.conteneurCanva{
-    width: 50%;
-    margin: auto;
+#conteneurCanva1, #conteneurCanva2{
+  height: 300px;
+  width: 70%;
+  margin: auto;
+}
+.conteneurCanva canvas{
+  width: 70%;
 }
 
 #matiere-table table, #classement-table table{
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: auto;
+}
+
+.toggle-graph-button {
+  color: var(--orange_isen);
+  text-align: center;
+  font-size: 1em;
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 40%;
+  background-color: var(--violet_isen);
+  border-radius: 5px;
+}
+
+/* Effet de survol */
+.toggle-graph-button:hover {
+  background-color: var(--violet_clair);
+}
+
+#matiere-table, #classement-table{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
