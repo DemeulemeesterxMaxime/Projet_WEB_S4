@@ -99,11 +99,7 @@ try {
         ?>
 
             <div class="search-container">
-                <input type="text" id="search-input" placeholder="Rechercher...">
-                <div id="search-results"></div>
-            </div>
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Rechercher...">
+                <input type="text" id="search-input" placeholder="Rechercher votre note ! ">
                 <div id="search-results"></div>
             </div>
             <div class="classement-table">
