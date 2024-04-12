@@ -35,6 +35,11 @@ if (isset($_SESSION["id"])) {
     $reqPrep4 = $conn->prepare($req4);
     $reqPrep4->execute();
     $resultat4 = $reqPrep4->fetchAll(PDO::FETCH_ASSOC);
+
+    $req5 = "SELECT * FROM eleve_module";
+    $reqPrep5 = $conn->prepare($req5);
+    $reqPrep5->execute();
+    $resultat5 = $reqPrep5->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // Il n'est pas nécessaire de dupliquer l'exemple suivant, c'était juste pour l'illustration.
@@ -53,7 +58,8 @@ if (isset($_SESSION["id"])) {
         document.addEventListener('DOMContentLoaded', function() {
             var resultat = <?php echo json_encode($resultat) ?: '[]'; ?>;
             var resultat2 = <?php echo json_encode($resultat2) ?: '[]'; ?>;
-            console.log(resultat, resultat2);
+            var resultat5 = <?php echo json_encode($resultat5) ?: '[]'; ?>;
+            console.log(resultat, resultat2,resultat5);
 
             let correspondances = [];
 
@@ -115,6 +121,7 @@ if (isset($_SESSION["id"])) {
         // Données pour le premier graphique (Notes des modules)
         var resultat = <?php echo json_encode($resultat) ?: '[]'; ?>;
         var resultat2 = <?php echo json_encode($resultat2) ?: '[]'; ?>;
+        var resultat5 = <?php echo json_encode($resultat5) ?: '[]'; ?>;
         let labelsModule = [];
         let dataModule = [];
         resultat.forEach(row => {
@@ -125,7 +132,40 @@ if (isset($_SESSION["id"])) {
                 }
             });
         });
+        //pour la moyenne générale 
+       // Créer un objet pour stocker les moyennes par matière
+        const moyennesParMatiere = {};
 
+        // Parcourir chaque résultat pour calculer les moyennes par matière
+        resultat5.forEach(row => {
+            const matiere = resultat2.find(ligne => ligne.id_module === row.id_module)?.matiere;
+            if (matiere) {
+                // Si la matière existe, ajouter la moyenne du module à son total
+                if (moyennesParMatiere[matiere]) {
+                    moyennesParMatiere[matiere].push(parseFloat(row.moyenne_module));
+                } else {
+                    moyennesParMatiere[matiere] = [parseFloat(row.moyenne_module)];
+                }
+            }
+        });
+
+        // Créer des tableaux pour stocker les noms des matières et les moyennes correspondantes
+        const nomsMatières = [];
+        const moyennesMatières = [];
+
+        // Calculer la moyenne de chaque matière et remplir les tableaux correspondants
+        for (const matiere in moyennesParMatiere) {
+            const moyennesModules = moyennesParMatiere[matiere];
+            const moyenneMatiere = moyennesModules.reduce((acc, curr) => acc + curr, 0) / moyennesModules.length;
+            nomsMatières.push(matiere);
+            moyennesMatières.push(moyenneMatiere.toFixed(2)); // Arrondir la moyenne à 2 décimales
+        }
+
+        console.log(nomsMatières);
+        console.log(moyennesMatières);
+
+
+        //pour la moyenne ligne à 10
         let points = [];
         let xmin=0;
         let xmax=4; 
@@ -145,8 +185,18 @@ if (isset($_SESSION["id"])) {
                     backgroundColor: '#F9A88C',
                     borderColor: '#F9A88C',
                     borderWidth: 1,
-                    order: 1
+                    order: 2
                 },
+                
+                {
+                label: 'Moyenne générale',
+                data: moyennesMatières,
+                backgroundColor: 'rgb(0,128,0)',
+                borderColor: 'rgb(0,128,0)',
+                type: 'line',
+                order: 1
+              },
+                
                 {
                 label: 'Moyenne à 10',
                 data: points,

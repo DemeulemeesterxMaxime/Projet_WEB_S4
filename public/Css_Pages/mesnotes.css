@@ -390,3 +390,49 @@
       border-bottom: none;
   }
   */
+
+
+/*Quand il n'y a pas de note */
+#div_pasnote{
+  background-color: #3F2A56;
+  border-radius: 5px;
+  color: #F06B42;
+  width: 70%;
+  height: 30%;
+  position: fixed; /* Position fixe pour maintenir la pop-up à l'écran */
+  top: 50%; /* Positionnement vertical au centre */
+  left: 50%; /* Positionnement horizontal au centre */
+  transform: translate(-50%, -50%); /* Déplacement de la pop-up au centre de la fenêtre */
+  padding: 20px; /* Espacement interne */
+  z-index: 9999;
+  display: none;
+}
+#div_pasnote_flex{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+#btn_pasnote{
+  
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  background-color: var(--orange_isen);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+#i_pasnote{
+    display: flex;
+    width: 100%;
+    height: 20px;
+    justify-content: flex-end;
+
+}
+#i_pasnote i {
+  width: 25px;
+  height: auto;
+}

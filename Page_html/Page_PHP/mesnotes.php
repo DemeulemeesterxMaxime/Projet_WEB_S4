@@ -106,7 +106,7 @@ try {
                 <?php
                 $x = isset($_GET['x']) ? intval($_GET['x']) : 10;
                 ?>
-                <table>
+                <table class="tableau_verif">
                     <thead>
                         <tr>
                             <th>Nom de la note</th>
@@ -208,6 +208,14 @@ try {
                     <span id="col"><i class="fa-solid fa-plus"></i>Ajouter note</span></a>
             </button>
         </div>
+        </div>
+
+        <div id="div_pasnote">
+            <div id="div_pasnote_flex">
+                <div id="i_pasnote"><i class="fa-solid fa-xmark"></i></div>
+                <h2>Il n'y a aucune "Note" rentré, veuillez rentrer des notes</h2>
+                <button id="btn_pasnote"onclick="redirection()"> Ajouter des notes</button>
+            </div>
         </div>
         <script src="../../public/JS/note.js"></script>
 </body>

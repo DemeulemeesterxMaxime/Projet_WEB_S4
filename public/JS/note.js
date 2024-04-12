@@ -74,3 +74,27 @@ window.onload = function () {
     document.getElementById("date").value = dateSelect;
   }
 };
+
+
+
+//Quand il n'y a pas de note affiché : 
+var tbody = document.querySelector('.tableau_verif td');
+var div_pasnote = document.getElementById('div_pasnote');
+
+if (!tbody) {
+    console.log("Pas de note");
+    div_pasnote.style.display = 'block';
+    //alert("Il n'y a pas de note entrée");
+}
+else{
+  div_pasnote.style.display = 'none';
+}
+
+document.getElementById('i_pasnote').addEventListener('click', function() {
+    div_pasnote.style.display = 'none';
+});
+
+
+function redirection(){
+  document.location.href="add_note.php"; 
+}
