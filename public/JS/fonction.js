@@ -1,8 +1,5 @@
-
-function maFonction() {
-  console.log("Ceci est ma fonction.");
-}
-
+// Description: Ce fichier contient les fonctions utilisées pour le traitement des données dans le projet.
+// Fonction qui permet de se connecter à la base de données
 function DB_connect() {
   let conn = mysql.createConnection({
     host: "localhost",
@@ -24,7 +21,7 @@ function DB_connect() {
   return conn;
 }
 
-
+// Fonction qui permet de valider les données entrées par l'utilisateur
 function valider_donnees(donnees) {
   donnees = donnees.trim();
   donnees = donnees.replace(/\\/g, "");
@@ -40,6 +37,7 @@ function verificationEmail(email) {
   return patteremail1.test(email);
 }
 
+// Fonction qui permet d'extraire le prénom et le nom de l'email
 function extrairePrenomNom(email) {
   // Vérification de l'email
   const matches = email.match(/^([a-zA-Z]+)\.([a-zA-Z]+)@student\.junia\.com$/);
@@ -329,7 +327,7 @@ function id_evaluation(code) {
     }
   });
 }
-
+// Fonction qui va afficher le nom de la matière en fonction du code
 function affichage_note(code, conn) {
   const id_mat = id_matiere(code);
   const id_mod = id_module(code);
@@ -766,6 +764,7 @@ function moyenne_matiere(id, id_content) {
   });
 }
 
+// Fonction qui va supprimer les doublons dans la base de donnée
 function deleteDouble() {
   let conn = DB_connect();
 
@@ -781,6 +780,7 @@ function deleteDouble() {
 }
 
 let moy = 0;
+// Fonction qui va mettre à jour la moyenne de la matière
 function UpdateMoyenne(id, id_matiere) {
   let conn = DB_connect();
   moyenne_matiere(id, id_matiere)
@@ -816,6 +816,7 @@ function UpdateMoyenne(id, id_matiere) {
     });
 }
 
+// Fonction qui va mettre à jour la moyenne du module
 function Moyenne_module(id) {
   let conn = DB_connect();
   let sommemodule1 = 0;
@@ -937,6 +938,7 @@ function Moyenne_module(id) {
   });
 }
 
+// Fonction qui va mettre à jour la moyenne générale
 function Moyenne_generale(id) {
   let conn = DB_connect();
 
@@ -983,7 +985,7 @@ function Moyenne_generale(id) {
   });
 }
 
-
+// Fonction qui va ajouter une note dans la base de donnée
 function add_note_line(text) {
   let conn = DB_connect();
   let code = (epreuve = note = coefficient = "undef");
@@ -1059,5 +1061,5 @@ function add_note_line(text) {
 // Moyenne_module(2);
 // Moyenne_generale(2);
 
-module.exports = { DB_connect };
+// Fonction qui va afficher les notes que l'on exporte dans le fichier serveur.js
 module.exports = { affichage_note };

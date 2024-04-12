@@ -35,7 +35,7 @@
                 <form action="" method="post" id="form">
                     <label>Matière :</label>
                     <select name="matiere" id="matiere">
-                        <option value="tous">Tous</option>
+                        <option value="Tous">Tous</option>
                         <option value="1">Maths</option>
                         <option value="2">Physique</option>
                         <option value="3">Informatique</option>
@@ -50,11 +50,9 @@
                 </form>
                 <div class="search-container">
                     <input type="text" id="search-input" placeholder="Rechercher votre note ! ">
-                    <!-- <div id="results"></div> -->
                 </div>
             </div>
         </div>
-
         <?php
 
         /* Pour le fichier mesnote.php  */
@@ -64,7 +62,6 @@
         try {
             $id = $_SESSION['id'];
             if ($_COOKIE["search_query"] != 1) {
-
                 if (isset($_POST["date"]) && $_POST["date"] != "none") {
                     if ($_POST["date"] == "Croissant") {
                         $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval DESC";
@@ -72,10 +69,9 @@
                     if ($_POST["date"] == "Decroissant") {
                         $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval";
                     }
-                } else if (isset($_POST["matiere"]) && $_POST["matiere"] != "tous") {
-                    echo ("on est dans le cas ou on a choisi une matiere");
+                } 
+                if (isset($_POST["matiere"]) && $_POST["matiere"] != "tous") {
                     if ($_POST["matiere"] == "1") {
-                        echo ("on est dans le cas ou on a choisi la matiere 1");
                         $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 1;";
                     } else if ($_POST["matiere"] == "2") {
                         $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 2;";
@@ -84,7 +80,8 @@
                     } else if ($_POST["matiere"] == "4") {
                         $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 4;";
                     }
-                } else {
+                }
+                if(isset($_POST["matiere"]) && $_POST["matiere"] == "Tous" && isset($_POST["date"]) && $_POST["date"] == "none"){
                     //La requete SQL
                     $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval ";
                 }
@@ -100,8 +97,6 @@
             echo "Erreur : " . $e->getMessage();
         }
         ?>
-
-
         <div class="classement-table">
             <table class="tableau_verif" id="tab_1">
                 <thead>

@@ -1,34 +1,35 @@
+//On obtient les éléments du DOM
 const searchInput = document.getElementById("search-input");
 const searchResults = document.getElementById("results");
 const userId = document.cookie.match(/user_id=([^;]+)/)?.[1];
 const tab_2 = document.getElementById("tab_2");
 const tab_1 = document.getElementById("tab_1");
 
+//on masque par défaut le tableau de la barre de recherche
 tab_1.style.display = "none";
 
+//on va crée un cookie avec une valeur par défault, le cookie dure 1 ans 
+let date = new Date();
+date.setTime(date.getTime() + 365 * 24 * 60 * 60 * 1000); // Ajoute 24 heures
+let expires = "; expires=" + date.toUTCString();
+document.cookie = "search_query=0" + expires + "; path=/";
 
-if (userId) {
-  console.log(`Identifiant utilisateur : ${userId}`);
-} else {
-  console.log("Aucun cookie 'user_id' trouvé");
-}
-
-document.cookie = "search_query=0; expires=Fri, 31 Dec 2026 23:59:59 GMT; path=/";
-
-
+//lorsque l'on change la valeur de l'input de recherche
 searchInput.addEventListener("input", function () {
   const searchText = this.value.trim();
   if (searchText === "") {
+    //si la recherche est vide, on affiche le tableau normal
     tab_1.style.display = "none";
     tab_2.style.display = "block";
     searchResults.innerHTML = "";
     searchResults.style.display = "none";
     return;
   } else {
+    //sinon on affiche le tableau de recherche
     tab_2.style.display = "none";
     tab_1.style.display = "block";
   }
-  console.log("Recherche de :", searchText);
+  //on va envoyer une requête POST pour récupérer les résultats de recherche
   fetch("http://localhost:3000/mesnotes", {
     method: "POST",
     headers: {
@@ -41,8 +42,7 @@ searchInput.addEventListener("input", function () {
   })
     .then((response) => response.json())
     .then((data) => {
-
-      console.log("Résultats de la recherche :", data.resultsToSend);
+      //on va traiter les résultats de recherche
       const results = data.resultsToSend;
       let resultHtml = ``;
 
@@ -60,6 +60,7 @@ searchInput.addEventListener("input", function () {
         <td><a href='modification_note.php?id_modif=${result.id_eval}'><i class='fa-regular fa-pen-to-square color'></i></a></td>
       </tr>`;
       });
+      //on va afficher les résultats de recherche
       searchResults.innerHTML = resultHtml;
       searchResults.style.display = "block";
     })
@@ -73,19 +74,20 @@ searchInput.addEventListener("input", function () {
     });
 });
 
-// Fonction pour détecter les changements d'options
+// Fonction pour détecter les changements d'options dans le formulaire filtre
 document.getElementById('matiere').addEventListener('change', function() {
-    // Actualiser le formulaire sans rechargement de page
+    // On va placer la valeur de l'option sélectionnée dans le localStorage
     localStorage.setItem("mat", this.value);
+    // Actualiser le formulaire sans rechargement de page
     document.getElementById('form').submit();        
 });
 
 document.getElementById('date').addEventListener('change', function() {
-    // Actualiser le formulaire sans rechargement de page
     localStorage.setItem("dat", this.value);
     document.getElementById('form').submit();
 });
 
+// Fonction pour récupérer les valeurs du localStorage et les placer dans les champs du formulaire après le chargement de la page
 window.onload = function () {
   var matiereSelect = localStorage.getItem("mat");
   if (matiereSelect) {
@@ -97,8 +99,6 @@ window.onload = function () {
     document.getElementById("date").value = dateSelect;
   }
 };
-
-
 
 //Quand il n'y a pas de note affiché : 
 var tbody = document.querySelector('.tableau_verif td');
