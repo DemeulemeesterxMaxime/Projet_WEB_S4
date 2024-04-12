@@ -48,6 +48,10 @@
                         <option value="Decroissant">De la plus vieille</option>
                     </select>
                 </form>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Rechercher votre note ! ">
+                    <div id="search-results"></div>
+                </div>
             </div>
         </div>
 
@@ -95,10 +99,7 @@
         }
         ?>
 
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="Rechercher votre note ! ">
-            <div id="search-results"></div>
-        </div>
+
         <div class="classement-table">
             <table class="tableau_verif">
                 <thead>
@@ -111,27 +112,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <?php
-                        //$counter = 0;
-                        foreach ($resultat as $row) {
-                            // if ($counter >= $x) {
-                            //     break;
-                            // }
-                            // Reste du code...
-                            require_once("../../SQL_Traitement/fonctions.php");
-                            $code = $row['code'];
-                            $ton_module = id_module($code);
-                            $CodeString = affichage_note($code);
+                    <?php
+                    //$counter = 0;
+                    foreach ($resultat as $row) {
+                        // if ($counter >= $x) {
+                        //     break;
+                        // }
+                        // Reste du code...
+                        require_once("../../SQL_Traitement/fonctions.php");
+                        $code = $row['code'];
+                        $ton_module = id_module($code);
+                        $CodeString = affichage_note($code);
 
-                            // Ajouter un attribut id="err" si "ERREUR DANS PDF" est détecté
-                            if ($row['epreuve'] == "ERREUR DANS PDF") {
-                                echo '<tr class="err">';
-                            } else {
-                                echo '<tr>';
-                            }
-                            echo"<td>$row[epreuve]</td><td>$CodeString</td><td>$row[date_eval]</td><td>$row[note]</td><td><a href='modification_note.php?id_modif=" . $row['id_eval'] . "'><i class='fa-regular fa-pen-to-square color'></i></a></td></tr>";
+                        // Ajouter un attribut id="err" si "ERREUR DANS PDF" est détecté
+                        if ($row['epreuve'] == "ERREUR DANS PDF") {
+                            echo '<tr class="err">';
+                        } else {
+                            echo '<tr>';
                         }
-                        ?>
+                        echo "<td>$row[epreuve]</td><td>$CodeString</td><td>$row[date_eval]</td><td>$row[note]</td><td><a href='modification_note.php?id_modif=" . $row['id_eval'] . "'><i class='fa-regular fa-pen-to-square color'></i></a></td></tr>";
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
