@@ -22,6 +22,7 @@
 </head>
 
 <body>
+
     <?php
     session_start();
     include_once("../Page_Structuration/header.php");
@@ -29,6 +30,16 @@
         header('Location: sign_in_up.php');
     } else {
     ?>
+        <div class="notePopup">
+            <h2>Information de la Note : </h2>
+            <div id="info_note">
+                <span id="nom_note"></span> <br>
+                <span id="note_actu"></span> <br>
+                <span id="moyenne_classe"></span> <br>
+                <span id="note_min"></span> <br>
+                <span id="note_max"></span> <br>
+            </div>
+        </div>
         <div class="page_no_header">
             <div class="filtre">
                 <h3>Filtre :</h3>
@@ -69,7 +80,7 @@
                     if ($_POST["date"] == "Decroissant") {
                         $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval";
                     }
-                } 
+                }
                 if (isset($_POST["matiere"]) && $_POST["matiere"] != "tous") {
                     if ($_POST["matiere"] == "1") {
                         $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 1;";
@@ -81,7 +92,7 @@
                         $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 4;";
                     }
                 }
-                if(!isset($_POST["matiere"]) || $_POST["matiere"] == "Tous" && !isset($_POST["date"]) || $_POST["date"] == "none"){
+                if (!isset($_POST["matiere"]) || $_POST["matiere"] == "Tous" && !isset($_POST["date"]) || $_POST["date"] == "none") {
                     //La requete SQL
                     $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval ";
                 }
@@ -139,9 +150,13 @@
                         if ($row['epreuve'] == "ERREUR DANS PDF") {
                             echo '<tr class="err">';
                         } else {
-                            echo '<tr>';
+                            echo '<tr class="' . $row['note'] . "?" . $row['epreuve'] . "?" . $row['code'] . '">';
                         }
-                        echo "<td>$row[epreuve]</td><td>$CodeString</td><td>$row[date_eval]</td><td>$row[note]</td><td><a href='modification_note.php?id_modif=" . $row['id_eval'] . "'><i class='fa-regular fa-pen-to-square color'></i></a></td></tr>";
+                        echo "<td>$row[epreuve]</td>
+                            <td>$CodeString</td>
+                            <td>$row[date_eval]</td>
+                            <td>$row[note]</td>
+                            <td><a href='modification_note.php?id_modif=" . $row['id_eval'] . "'><i class='fa-regular fa-pen-to-square color'></i></a></td></tr>";
                     }
                     ?>
                 </tbody>
@@ -168,6 +183,8 @@
             <button id="btn_pasnote" onclick="redirection()"> Ajouter des notes</button>
         </div>
     </div>
+
+
     <script type="module" src="../../public/JS/note.js"></script>
 </body>
 
