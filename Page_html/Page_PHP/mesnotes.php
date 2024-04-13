@@ -135,12 +135,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    //$counter = 0;
                     foreach ($resultat as $row) {
-                        // if ($counter >= $x) {
-                        //     break;
-                        // }
-                        // Reste du code...
                         require_once("../../SQL_Traitement/fonctions.php");
                         $code = $row['code'];
                         $ton_module = id_module($code);
