@@ -6,20 +6,23 @@ const router = Router(); // Créer un routeur Express
 const cors = require("cors"); // Add cors library
 const bodyParser = require("body-parser");
 
+// Enable CORS for all origins during development (not recommended for production)
 router.use(cors());
-// const { affichage_note } = require("./public/JS/fonction.js");
+
 // Middleware pour parser les requêtes POST
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json()); // Ajouter cette ligne pour analyser les requêtes au format JSON
-const { affichage_note } = require("../public/JS/fonction.js");
 
+const { affichage_note } = require("../public/JS/fonction.js"); // Importer la fonction d'affichage des notes
 
+// Connexion à la base de données
 let conn = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "root",
   database: "jreuttus_projet_web_s4",
 });
+
 // Vérification de la connexion à la base de données
 conn.connect((err) => {
   if (err) {
@@ -31,22 +34,20 @@ conn.connect((err) => {
 
 //Route pour la requête de recherche
 router.post("/mesnotes", (req, res) => {
-  // On va récupérer dans le cookie l'id de l'utilisateur
-  //console.log("Requête POST sur /mesnotes avec la req : ", req.body);
+  // On va récupérer les valeurs de la requête POST
   const searchQuery = req.body.searchQuery;
   const id_use = req.body.id;
-  //console.log("Recherche de :", searchQuery, "pour l'utilisateur :", id_use);
+
+    // Requête préparée pour récupérer les notes de l'élève en liens avec la recherche
   let reqPrep =
     "SELECT * FROM eval WHERE code LIKE ? AND id_eval IN (SELECT id_eval FROM eval_eleve WHERE id_eleve = ?)";
-  // La syntaxe de la requête préparée doit être comme suit :
-  // "SELECT * FROM eval WHERE code LIKE ? AND id_eval IN (SELECT id_eval FROM eval_eleve WHERE id_eleve = ?)";
 
   conn.query(reqPrep, [`%${searchQuery}%`, id_use], (err, resultat) => {
     if (err) {
       console.error("Erreur lors de l'exécution de la requête serveur :", err);
       return;
     }
-    //console.log("Résultat de la requête :", resultat);
+    // On va attentdre que toutes les promesses soient résolues avant d'envoyer les résultats
     Promise.all(
       resultat.map((row) =>
         affichage_note(row.code, conn).then((code) => ({

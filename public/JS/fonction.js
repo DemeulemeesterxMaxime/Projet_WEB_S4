@@ -331,8 +331,6 @@ function id_evaluation(code) {
 function affichage_note(code, conn) {
   const id_mat = id_matiere(code);
   const id_mod = id_module(code);
-  console.log("ID de la matière : " + id_mat);
-  console.log("ID du module : " + id_mod);
   // Utiliser des promesses pour gérer les requêtes SQL asynchrones
   return new Promise((resolve, reject) => {
     if (id_mod !== 0 && id_mat !== 0) {
