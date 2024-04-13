@@ -81,7 +81,7 @@
                         $reqPrep = "SELECT eval.* FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval JOIN matiere ON eval.id_matiere = matiere.id_matiere WHERE eval_eleve.id_eleve = :id AND matiere.id_module = 4;";
                     }
                 }
-                if(isset($_POST["matiere"]) && $_POST["matiere"] == "Tous" && isset($_POST["date"]) && $_POST["date"] == "none"){
+                if(!isset($_POST["matiere"]) || $_POST["matiere"] == "Tous" && !isset($_POST["date"]) || $_POST["date"] == "none"){
                     //La requete SQL
                     $reqPrep = "SELECT * FROM eval JOIN eval_eleve ON eval.id_eval = eval_eleve.id_eval WHERE id_eleve = :id ORDER BY date_eval ";
                 }
