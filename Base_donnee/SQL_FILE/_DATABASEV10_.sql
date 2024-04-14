@@ -49,10 +49,8 @@ CREATE TABLE `eleve` (
 INSERT INTO `eleve` (`id_eleve`, `prenom`, `nom`, `classe`, `email`, `password`, `confirmed`, `photo_profil`, `moyenne_generale`, `profil_mode`) VALUES
 (1, 'admin', 'admin', NULL, 'admin.admin@student.junia.com', '$2y$10$bsv.AoWqlM7NPfQ4BEBP1O9kUt4gk5xcKbyhm0qD6Ox59bPVLBmxK', 1, '../../public/Images/Images_profile/default_photo.png', NULL, 1),
 (2, 'maxime', 'demeulemeester', 'CIR1', 'maxime.demeulemeester@student.junia.com', '$2y$10$1uFHZVZCJXCzDKCkMyEbGe34W8W8wkquBt/N/H0tKWfxZcnxPJ4tO', 1, '../../public/Images/Images_profile/default_photo.png', NULL, 1),
-(3, 'clement', 'tassin', 'CIR1', 'clement.tassin@student.junia.com', '$2y$10$WLkQiXYNj0BHcXj0dHGisuX9tVytXNgpUS.p3Pp/jgQAzw.c3YkzC', 1, '../../public/Images/Images_profile/default_photo.png', NULL, 1),
-(4, 'jeremy', 'lamour', 'CIR1', 'jeremy.lamour@student.junia.com', '$2y$10$c8.4A7ceRPwQVtV4X9piKOXPm5R7xoUbFu2tl2pbIJRVjqYWbe6F.', 1, '../../public/Images/Images_profile/default_photo.png', NULL, 1),
-(5, 'elen', 'kesteloot', 'CIR1', 'elen.kesteloot@student.junia.com', 'maxime', 1, '../../public/Images/Images_profile/default_photo.png', NULL, 1);
-
+(3, 'elen', 'kesteloot', 'CIR1', 'elen.kesteloot@student.junia.com', '$2y$10$WLkQiXYNj0BHcXj0dHGisuX9tVytXNgpUS.p3Pp/jgQAzw.c3YkzC', 1, '../../public/Images/Images_profile/default_photo.png', NULL, 1),
+(4, 'jeremy', 'lamour', 'CIR1', 'jeremy.lamour@student.junia.com', '$2y$10$c8.4A7ceRPwQVtV4X9piKOXPm5R7xoUbFu2tl2pbIJRVjqYWbe6F.', 1, '../../public/Images/Images_profile/default_photo.png', NULL, 1);
 -- Création de la table 'admin'
 CREATE TABLE admin (
     id INT,
