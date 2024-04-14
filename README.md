@@ -37,6 +37,11 @@ http://localhost/Projet_WEB_PHP_s4/Base_donnee/index.php
 
 si vous voulez voir votre nouvelle base de donnée allez ici : http://localhost/phpMyAdmin/index.php?route=/database/structure&server=1&db=jreuttus_projet_web_s4
 
+Si cela ne fonctionne pas il faut manuellement crée la base de donnée avec le nom suivant : jreuttus_projet_web_s4
+
+Ensuite il faut importer le fichier sql qui se trouve dans le dossier Base_donnee et prendre la version N°10
+
+si il y a une erreur concernant les triggers il faut retirer le code et les mettres apres l'initialisation de la base de donnée. 
 
 ## Accéder à l'accès Administrateur
 
