@@ -1,38 +1,18 @@
 # Projet_WEB_PHP
 
-Projet_WEB_PHP_S2
+Projet_WEB_PHP_S4
 
 ## Gestionnaire de la base :
 
 Pour la première connection il faut setup la base de donnée en hébérgant le projet puis en passant par ce liens
-http://localhost/Projet_WEB_PHP/Base_donnee/index.php
+http://localhost/Projet_WEB_PHP_s4/Base_donnee/index.php
 
 si vous voulez voir votre nouvelle base de donnée allez ici : http://localhost/phpMyAdmin/index.php?route=/database/structure&server=1&db=jreuttus_projet_web_s4
 
 ### Setup parseur si /vendor composer.json et composer.lock non crée
 
-il faut dans un premier temps intaller composer : https://getcomposer.org/download/
-
-Ensuite il faut rentrer dans le terminal les commandes suivantes : 
-
 ```bash
-composer
-```
-
-si le fichier composer.json ne se crée pas il faut le crée est y mettre les lignes suivantes :
-
-```json
-{
-    "require": {
-        "smalot/pdfparser": "^2.9"
-    }
-}
-```
-
-et ensuite rentrer la commande suivante :
-
-```bash
-composer install
+composer require smalot/pdfparser
 ```
 
 #### Accéder à l'accès Administrateur
@@ -54,13 +34,6 @@ admin
 Code de confirmation mot de passe et confirmation de compte:
 12345
 
-##### Crée des graphiques ( en développement )
-
-Pour pouvour crée des graphique il faut aller dans php.ini est ajouter la ligne suivante :
-
-```py
-extension=gd
-```
 
 ###### Assistance
 
@@ -76,3 +49,21 @@ npm i express-session
 npm i mysql
 npm i cookie-parser
 ```
+
+Pour lancer le serveur :
+
+```bash
+node server.js
+```
+Il ne faut pas oublier de lancer le serveur de la base de donnée
+
+```bash
+php -S localhost:8000
+```
+
+Ou aussi utiliser MAMP
+
+
+Une fois lancer si vous voulez tester notre systeme de note il vous suffit de vous connecter avec les identifiants cité dans notre contre rendu et d'ensuite ajouter des notes à des étudiants via les pds founis dans la racine du projet. Pour ne pas avoir les meme notes vous pouvez modifier les notes via la fonction de notre site web dans la page note.
+
+Pour toute question ou problème n'hésitez pas à nous contacter nous sommes là pour vous aider et serions ravis de vous présenter notre projet en détails en présentielle ou en visioconférence.
