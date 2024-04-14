@@ -1,7 +1,7 @@
 # Projet_WEB_PHP
 
 Projet_WEB_PHP_S4
-# Comment lancer notre projet sur votre ordinateur ( suivre les étapes )
+# Comment lancer notre projet sur votre ordinateur ? ( suivre les étapes )
 ## Setup parseur si /vendor composer.json et composer.lock non crée et serveur
 
 ```bash
