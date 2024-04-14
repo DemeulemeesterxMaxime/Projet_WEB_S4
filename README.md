@@ -73,3 +73,34 @@ Pour trouver nos informations de contact il vous suffit de vous rendre dans les 
 Une fois lancer si vous voulez tester notre systeme de note il vous suffit de vous connecter avec les identifiants cité dans notre contre rendu et d'ensuite ajouter des notes à des étudiants via les pds founis dans la racine du projet. Pour ne pas avoir les meme notes vous pouvez modifier les notes via la fonction de notre site web dans la page note.
 
 Pour toute question ou problème n'hésitez pas à nous contacter nous sommes là pour vous aider et serions ravis de vous présenter notre projet en détails en présentielle ou en visioconférence.
+
+
+## Fonctionnalités du site
+
+- Inscription
+- Connexion
+- Déconnexion
+- Modification de mot de passe
+- Modification de profil
+- Ajout de notes
+- Modification de notes
+- Filtrage de notes
+- Recherche de notes
+- Affichage de notes
+- Affichage de moyenne
+- Affichage de médiane
+- Affichage de notes minimales
+- Affichage de notes maximales
+- Affichage de notes triées
+- Affichage de notes non triées
+- Affichage de notes par ordre croissant
+- Affichage de notes par ordre décroissant
+- Affichage de notes par matière
+- Page admin
+- Ajout de messages côté admin
+- Suppression de messages côté admin
+- Modification de messages côté admin
+- Suppression des utilisateurs côté admin
+- Modification des utilisateurs côté admin
+- Ajout des utilisateurs côté admin
+- Visualisations Graphiques des moyennes
