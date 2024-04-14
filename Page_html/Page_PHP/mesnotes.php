@@ -180,7 +180,7 @@
     </div>
 
 
-    <script type="module" src="../../public/JS/note.js"></script>
+    <script  src="../../public/JS/note.js"></script>
 </body>
 
 </html>

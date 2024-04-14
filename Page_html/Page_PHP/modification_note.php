@@ -47,7 +47,22 @@
 
                 $reqTAb = array(':id' => $id, ':nom' => $nom, ':datenote' => $date, ':note' => $manote);
                 $req->execute($reqTAb); //Executer la requete
+
+                //on va faire une requete pour chercher le code de la note modifiée
+                $reqPrep = "SELECT code FROM eval WHERE id_eval=:id"; //La requere SQL
+                $req = $conn->prepare($reqPrep); //Préparer la requete
+                $reqTAb = array(':id' => $id);
+                $req->execute($reqTAb); //Executer la requete
+                $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($resultat as $row) {
+                    $code = $row['code'];
+                }
+                
                 $conn = NULL;
+                require_once("../../SQL_Traitement/fonctions.php");
+                moyenne_matiere($_SESSION['id'], id_matiere($code));
+                Moyenne_module($_SESSION['id'], id_module($code));
+                UpdateMoyenne($_SESSION['id'], id_matiere($code));
                 header("Location:mesnotes.php");
             } catch (Exception $e) {
                 die("Erreur : " . $e->getMessage());

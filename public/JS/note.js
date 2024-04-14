@@ -59,7 +59,7 @@ searchInput.addEventListener("input", function () {
         let date_split = date.split("T");
         result.date_eval = date_split[0];
 
-        resultHtml += `<tr>
+        resultHtml += `<tr class="${result.note}?${result.epreuve}?${result.true_code}">
         <td>${result.epreuve}</td>
         <td>${result.code}</td>
         <td>${result.date_eval}</td>
@@ -70,6 +70,27 @@ searchInput.addEventListener("input", function () {
       //on va afficher les résultats de recherche
       searchResults.innerHTML = resultHtml;
       searchResults.style.display = "block";
+      // Sélectionnez toutes les lignes du tableau
+      let lignes = document.querySelectorAll("tr");
+
+      // Parcourez toutes les lignes
+      lignes.forEach((ligne) => {
+        // Ajoutez un écouteur d'événements click à chaque ligne
+        ligne.addEventListener("click", (event) => {
+          console.log("Ligne de recherche cliquée :", ligne);
+          // On va recuperer les element que l'on a caché dans la classe de la ligne, chaque element est séparé par '?'
+          let elements = ligne.className.split("?");
+
+          let epreuve_par = elements[1];
+          let code_par = elements[2];
+          let note_par = elements[0];
+          console.log("Note :", note_par);
+          console.log("Epreuve :", epreuve_par);
+          console.log("Code :", code_par);
+          // Appelez la fonction 'afficherPopup' avec l'ID de la ligne
+          afficherPopup(note_par, epreuve_par, code_par);
+        });
+      });
     })
     .catch((error) => {
       console.error(

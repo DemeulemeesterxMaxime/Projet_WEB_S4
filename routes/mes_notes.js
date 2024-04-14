@@ -56,6 +56,7 @@ router.post("/mesnotes", (req, res) => {
           date_eval: row.date_eval,
           note: row.note,
           id_eval: row.id_eval,
+          true_code: row.code,
         }))
       )
     )
