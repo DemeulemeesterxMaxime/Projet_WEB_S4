@@ -38,7 +38,7 @@ http://localhost/Projet_WEB_PHP_s4/Base_donnee/index.php
 si vous voulez voir votre nouvelle base de donnée allez ici : http://localhost/phpMyAdmin/index.php?route=/database/structure&server=1&db=jreuttus_projet_web_s4
 
 
-#### Accéder à l'accès Administrateur
+## Accéder à l'accès Administrateur
 
 Il suffit de se connecter normalement comme tout utilisateur en rentrant les codes suivants :
 
